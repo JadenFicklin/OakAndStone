@@ -1,31 +1,89 @@
 import { Link } from 'react-router-dom';
 import logo from 'assets/images/logo/logo.svg';
 import { useState } from 'react';
+import { cn } from 'utils/cn';
+import { Drawer } from 'utils/Drawer';
 
 export const Nav = () => {
-  const [open, setOpen] = useState();
+  const [open, setOpen] = useState(false);
 
   return (
     <>
-      <div
-        className="w-full h-11 bg-brown sm:hidden"
-        onClick={() => setOpen(!open)}></div>
-      <Link to="/">
+      {/* desktop */}
+      <div className="flex-wrap items-end justify-between hidden w-11/12 mx-auto md:flex">
+        <Link to="/" className="hidden md:block">
+          <img
+            alt="oak and stone logo"
+            src={logo}
+            className="h-12 xl:h-16 my-9"
+          />
+        </Link>
+        <div className="relative flex p-3 my-3 text-xs uppercase text-brown">
+          {navOptions.map((item, index) => (
+            <Link
+              to={item.link}
+              key={index}
+              onClick={() => setOpen(false)}
+              className="p-3 xl:px-10 hover:bg-brown hover:bg-opacity-5">
+              {item.text}
+            </Link>
+          ))}
+          <p className="absolute text-xs right-10 -top-4 text-lightBrown">
+            (801) 430-6451
+          </p>
+        </div>
+      </div>
+
+      {/* mobile */}
+      <div className={cn('w-full h-11 bg-brown md:hidden')}>
+        <div
+          className={cn(
+            'size-11 grid place-content-center cursor-pointer duration-200  mx-auto'
+          )}
+          onClick={() => setOpen(!open)}>
+          <div
+            className={cn(
+              'w-5 h-[1px] bg-white my-[1.5px] duration-200 relative ',
+              open && 'rotate-[-40deg] bottom-[-1.8px] w-5 md:bg-max'
+            )}></div>
+          <div
+            className={cn(
+              'w-5 h-[1px] bg-white my-[1.5px] duration-200',
+              open && 'hidden'
+            )}></div>
+          <div
+            className={cn(
+              'w-5 h-[1px] bg-white my-[1.5px] duration-200 relative',
+              open && 'rotate-[-135deg] bottom-[2.2px] w-5 md:bg-max'
+            )}></div>
+        </div>
+      </div>
+      <Link to="/" className="md:hidden">
         <img
           alt="oak and stone logo"
           src={logo}
           className="h-16 mx-auto my-9"
         />
-        <div className="w-10/12 h-[1px] bg-brown  mx-auto"></div>
+        <div className="w-10/12 h-[1px] bg-brown  mx-auto md:hidden"></div>
       </Link>
-      {open && (
-        <nav className="flex flex-wrap gap-x-4">
-          {navOptions.map((item) => (
-            <Link to={item.link}>{item.text}</Link>
-          ))}
-          <p>(801) 430-6451</p>
-        </nav>
-      )}
+      <div className="absolute w-full bg-white shadow-2xl text-brown md:hidden top-11">
+        <Drawer show={open} duration={'500'}>
+          <div className="flex flex-col w-10/12 py-3 mx-auto text-xs divide-y divide-brown divide-opacity-10">
+            <Link to="/" onClick={() => setOpen(false)} className="py-3">
+              Home
+            </Link>
+            {navOptions.map((item, index) => (
+              <Link
+                to={item.link}
+                key={index}
+                onClick={() => setOpen(false)}
+                className="py-3">
+                {item.text}
+              </Link>
+            ))}
+          </div>
+        </Drawer>
+      </div>
     </>
   );
 };
