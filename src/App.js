@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-import { Landing } from './pages/Landing';
-import { Gallery } from './pages/Gallery';
-import { About } from './pages/About';
-import { Process } from './pages/Process';
-import { Careers } from './pages/Careers';
-import { Contact } from './pages/Contact';
-import { Nav } from './components/Nav';
+import 'App.css';
+import { Landing } from 'pages/Landing';
+import { Gallery } from 'pages/Gallery';
+import { About } from 'pages/About';
+import { Process } from 'pages/Process';
+import { Careers } from 'pages/Careers';
+import { Contact } from 'pages/Contact';
+import { Nav } from 'components/Nav';
 
 function App() {
   return (

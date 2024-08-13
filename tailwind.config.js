@@ -10,7 +10,11 @@ module.exports = {
       xl: '1200px',
       xxl: '1400px'
     },
-    extend: {}
+    extend: {
+      colors: {
+        brown: '#40280A'
+      }
+    }
   },
   plugins: []
 };
