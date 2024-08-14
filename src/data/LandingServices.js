@@ -1,4 +1,4 @@
-const landingServicesData = [
+export const landingServicesData = [
   {
     name: 'Custom Cabinets',
     image: '',

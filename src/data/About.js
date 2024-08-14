@@ -1,4 +1,4 @@
-const aboutHeaderData = {
+export const aboutHeaderData = {
   title: 'THE TEAM BEHIND OAK AND STONE CABINETS',
   text: 'We are proud of the customer base that we have built. We specialize in custom cabinetry and design.',
   text2:
@@ -7,7 +7,7 @@ const aboutHeaderData = {
     'We specialize in kitchen remodels. Attention to detail is a top priority at Oak and Stone Custom Cabinets and we deliver a top quality product. We would be honored to help you complete your home experience with a beautiful kitchen.'
 };
 
-const aboutPeopleData = [
+export const aboutPeopleData = [
   {
     name: 'Rodney Ficklin',
     about:

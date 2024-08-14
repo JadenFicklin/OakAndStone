@@ -1,4 +1,4 @@
-const galleryData = [
+export const galleryData = [
   {
     title: 'Custom Cabinets',
     text: 'We are custom cabinet designers and builders, specializing in mid to upper tier cabinets. We use only the best hardware with soft close hinges and soft close under mount drawer slides.',

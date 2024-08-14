@@ -1,4 +1,4 @@
-const testimonialsData = [
+export const testimonialsData = [
   {
     name: 'Laurie Eastland',
     text: 'I throughly enjoyed having Rod and Nate do my main bathroom gut renovation. They were attentive, skilled, &addressed all my concerns promptly and professionally. Rod will get to the bottom of all issues that may come up dealing with the other subs. I am very happy with my finished product!'

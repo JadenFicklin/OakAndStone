@@ -10,27 +10,30 @@ export const Nav = () => {
   return (
     <>
       {/* desktop */}
-      <div className="flex-wrap items-end justify-between hidden w-11/12 mx-auto md:flex">
-        <Link to="/" className="hidden md:block">
-          <img
-            alt="oak and stone logo"
-            src={logo}
-            className="h-12 xl:h-16 my-9"
-          />
-        </Link>
-        <div className="relative flex p-3 my-3 text-xs uppercase text-brown">
-          {navOptions.map((item, index) => (
-            <Link
-              to={item.link}
-              key={index}
-              onClick={() => setOpen(false)}
-              className="p-3 xl:px-10 hover:bg-brown hover:bg-opacity-5">
-              {item.text}
-            </Link>
-          ))}
-          <p className="absolute text-xs right-10 -top-4 text-lightBrown">
-            (801) 430-6451
-          </p>
+      {/* <div className="hidden w-full h-28 md:flex"></div> */}
+      <div className="sticky top-0 z-10 hidden w-full bg-white md:flex">
+        <div className="flex flex-wrap items-center justify-between w-11/12 mx-auto">
+          <Link to="/" className="hidden md:block">
+            <img
+              alt="oak and stone logo"
+              src={logo}
+              className="h-12 xl:h-16 my-9"
+            />
+          </Link>
+          <div className="relative flex p-3 my-3 text-xs uppercase text-brown">
+            {navOptions.map((item, index) => (
+              <Link
+                to={item.link}
+                key={index}
+                onClick={() => setOpen(false)}
+                className="p-3 xl:px-10 hover:bg-brown hover:bg-opacity-5">
+                {item.text}
+              </Link>
+            ))}
+            {/* <p className="absolute text-xs right-10 -top-4 text-lightBrown">
+              (801) 430-6451
+            </p> */}
+          </div>
         </div>
       </div>
 

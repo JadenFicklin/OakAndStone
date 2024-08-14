@@ -1,4 +1,4 @@
-const processData = [
+export const processData = [
   {
     Title: 'Consultation',
     text: 'We begin the process with either an in home consultation, or at our. During this consultation, we go over design, pricing, time and other details.Our lead time is 4-6 weeks.',
