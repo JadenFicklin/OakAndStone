@@ -49,12 +49,12 @@ export const Carousel = () => {
           />
         ))}
       </div>
-      <div className="absolute flex justify-between w-24 h-5 -translate-x-1/2 bottom-10 left-1/2">
+      <div className="absolute flex justify-between w-16 h-5 -translate-x-1/2 lg:w-24 bottom-3 lg:bottom-10 left-1/2">
         {images.map((_, index) => (
           <div
             key={index}
             className={cn(
-              'bg-white size-4 cursor-pointer shadow-sm',
+              'bg-white size-3 lg:size-4 cursor-pointer shadow-sm',
               currentIndex === index ? 'bg-opacity-90' : 'bg-opacity-50'
             )}
             onClick={() => handleDotClick(index)}></div>
