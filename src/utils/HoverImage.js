@@ -25,7 +25,7 @@ function HoverImage({ children, image, width, height, offsetX, offsetY }) {
       {children}
       {isHovered && (
         <div
-          className="absolute z-50 bg-center bg-no-repeat bg-cover pointer-events-none border-[1px]"
+          className="absolute z-50 bg-center bg-no-repeat bg-cover pointer-events-none"
           style={{
             backgroundImage: `url(${image})`,
             width,

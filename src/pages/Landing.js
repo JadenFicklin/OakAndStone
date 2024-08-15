@@ -1,4 +1,4 @@
-import heroImage from 'assets/images/landing/kitchen-remodel-10-cropped.jpg';
+import { Carousel } from 'components/Carousel';
 import { LandingFaqs } from 'components/LandingFaqs';
 import { LandingServices } from 'components/LandingServices';
 import { Spacer } from 'components/Spacer';
@@ -14,12 +14,7 @@ export const Landing = () => {
             Meets Our Craftsmanship
           </p>
         </h2>
-        <img
-          src={heroImage}
-          alt="kitchen remodel"
-          className="w-[98%] mx-auto"
-        />
-        {/* faqs */}
+        <Carousel />
         <LandingFaqs />
         <LandingServices />
         <Spacer />

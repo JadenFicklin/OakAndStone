@@ -19,3 +19,19 @@
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+.carousel-container {
+  position: relative;
+  width: 98%;
+  height: 100%;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-inner img {
+  min-width: 100%;
+  height: auto;
+}
