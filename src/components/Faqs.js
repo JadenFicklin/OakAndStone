@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from 'utils/cn';
 
-export const LandingFaqs = () => {
+export const Faqs = () => {
   const [currentFaq, setCurrentFaq] = useState(0);
   console.log(currentFaq);
   return (

@@ -1,6 +1,6 @@
 import { Carousel } from 'components/Carousel';
-import { LandingFaqs } from 'components/LandingFaqs';
-import { LandingServices } from 'components/LandingServices';
+import { Faqs } from 'components/Faqs';
+import { Services } from 'components/Services';
 import { Spacer } from 'components/Spacer';
 
 export const Landing = () => {
@@ -15,8 +15,11 @@ export const Landing = () => {
           </p>
         </h2>
         <Carousel />
-        <LandingFaqs />
-        <LandingServices />
+        <Faqs />
+        <Services />
+        <Spacer />
+        <Spacer />
+        <Spacer />
         <Spacer />
       </div>
     </>
