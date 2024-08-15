@@ -1,5 +1,7 @@
-import heroImage from 'assets/images/landing/kitchen remodel 10 cropped.jpg';
+import heroImage from 'assets/images/landing/kitchen-remodel-10-cropped.jpg';
 import { LandingFaqs } from 'components/LandingFaqs';
+import { LandingServices } from 'components/LandingServices';
+import { Spacer } from 'components/Spacer';
 
 export const Landing = () => {
   return (
@@ -19,6 +21,8 @@ export const Landing = () => {
         />
         {/* faqs */}
         <LandingFaqs />
+        <LandingServices />
+        <Spacer />
       </div>
     </>
   );

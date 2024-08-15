@@ -1,6 +1,6 @@
-import aboutRodney from 'assets/images/landing/about rodney.jpg';
-import processManufacturing from 'assets/images/landing/process manufacturing.jpg';
-import contactWhere from 'assets/images/landing/contact where.jpeg';
+import aboutRodney from 'assets/images/landing/about-rodney.jpg';
+import processManufacturing from 'assets/images/landing/process-manufacturing.jpg';
+import contactWhere from 'assets/images/landing/contact-where.jpeg';
 
 export const landingFaqData = [
   {

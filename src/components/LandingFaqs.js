@@ -8,7 +8,7 @@ export const LandingFaqs = () => {
   console.log(currentFaq);
   return (
     <>
-      <div className="grid items-center grid-cols-1 md:grid-cols-2">
+      <div className="grid items-center grid-cols-1 mx-auto my-20 xl:w-10/12 md:grid-cols-2 xl:relative xl:left-8">
         <div className="md:order-2">
           {landingFaqData.map((item, index) => (
             <div
@@ -22,7 +22,7 @@ export const LandingFaqs = () => {
                   'h-full w-[3px] absolute -left-6',
                   currentFaq === index ? 'bg-brown' : ''
                 )}></div>
-              <div>
+              <div className="max-w-[400px]">
                 <h2 className="text-3xl">{item.title}</h2>
                 {item.subTitle && (
                   <h3 className="pt-3 text-xs opacity-50">{item.subTitle}</h3>
