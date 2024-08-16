@@ -7,33 +7,52 @@ export const About = () => {
     <div className="text-brown">
       <Title>About</Title>
       {/* team behind oak and stone */}
-      <div className="grid w-10/12 mx-auto gap-y-6">
-        <h2 className="text-2xl font-medium text-center">
+      <div className="grid w-10/12 mx-auto xl:my-20 xl:grid-cols-2 gap-y-6 ">
+        <h2 className="text-2xl font-medium text-center xl:hidden xl:text-left ">
           {aboutHeaderData.title}
         </h2>
         <img
           src={aboutHeaderData.image}
           alt="oak and stone team building their warehouse"
-          className="my-6"
+          className="object-cover my-6 xl:order-2 xl:h-full xl:my-0"
         />
-        <p>{aboutHeaderData.text}</p>
-        <p>{aboutHeaderData.text2}</p>
-        <p>{aboutHeaderData.text3}</p>
+        <div className="grid mx-auto h-max gap-y-6 xl:w-10/12 xl:text-xl">
+          <h2 className="hidden text-2xl font-medium text-center xl:text-left xl:block xl:text-2xl">
+            {aboutHeaderData.title}
+          </h2>
+          <p>
+            {aboutHeaderData.text}
+            <br></br>
+            <br></br>
+            {aboutHeaderData.text2}
+            <br></br>
+            <br></br>
+            {aboutHeaderData.text3}
+          </p>
+        </div>
       </div>
 
       {/* devider */}
       <div className="w-10/12 mx-auto h-[1px] my-20 bg-brown"></div>
       {/* members */}
       {aboutPeopleData.map((item) => (
-        <div className="grid w-10/12 mx-auto my-6 gap-y-6">
+        <div className="grid w-10/12 grid-cols-1 mx-auto my-6 mb-20 xl:text-xl xl:grid-cols-2 gap-y-6 xl:gap-x-20 h-max">
           <img
             src={item.image}
-            alt="oak and stone team building their warehouse"
-            className="my-6"
+            alt={item.name}
+            className="object-cover object-left my-6 bg-no-repeat bg-cover xl:my-0 xl:h-full"
           />
-          <h2 className="text-2xl font-medium text-center">{item.name}</h2>
-          <p>{item.text}</p>
-          <p>{item.text2}</p>
+          <div className="grid gap-y-6 h-max">
+            <h2 className="text-2xl font-medium text-left xl:text-2xl">
+              {item.name}
+            </h2>
+            <p>
+              {item.text}
+              <br></br>
+              <br></br>
+              {item.text2}
+            </p>
+          </div>
         </div>
       ))}
     </div>
