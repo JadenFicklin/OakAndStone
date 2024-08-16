@@ -1,5 +1,10 @@
+import team from 'assets/images/about/team.jpg';
+import rodney from 'assets/images/about/about-rodney.jpg';
+import nathan from 'assets/images/about/about-nathan.jpg';
+
 export const aboutHeaderData = {
   title: 'THE TEAM BEHIND OAK AND STONE CABINETS',
+  image: team,
   text: 'We are proud of the customer base that we have built. We specialize in custom cabinetry and design.',
   text2:
     'All of our cabinets are built in house with the highest quality materials. We have built a great reputation for providing quality products in the construction industry.',
@@ -10,16 +15,16 @@ export const aboutHeaderData = {
 export const aboutPeopleData = [
   {
     name: 'Rodney Ficklin',
-    about:
-      'From building tree fort as a young man Rod has always had a passion for building things, in high school they offered a house construction class where he built a house, from that point on Rodney has been involved in the construction trades. He and his wife spent their younger years starting their family in Arizona and then spent 5 years back east where Rod worked in Manhattan for a construction management company. In the early 90s they made the move to the Wasatch front, where Rod grew up. Their family grew to eight and now six grand children. “We love it here!”',
-    about2:
+    image: rodney,
+    text: 'From building tree fort as a young man Rod has always had a passion for building things, in high school they offered a house construction class where he built a house, from that point on Rodney has been involved in the construction trades. He and his wife spent their younger years starting their family in Arizona and then spent 5 years back east where Rod worked in Manhattan for a construction management company. In the early 90s they made the move to the Wasatch front, where Rod grew up. Their family grew to eight and now six grand children. “We love it here!”',
+    text2:
       'They started a home building business here in the early 90s, which they ran for many years, when their son-in-law expressed interest in building they decided to start a new company focusing on custom kitchens and bathroom remodeling. They partnered and Oak and Stone was born.“This is by far the best part of my working career, I love going to work with my family and creating amazing creations for you.”'
   },
   {
     name: 'Nate Judkins',
-    about:
-      'Nate always loved building things as a child. He would build anything from birdhouses to chicken coops, he loved all projects including restoring guitars. In Highschool, Nate was very involved in technical theater, building stage sets and platforms. After high school, Nate did not immediately start in the construction business. After serving a church mission, Nate attended school and became a veterinary technician. For 4 years, he worked as a vet tech in an equine hospital. Although his love for horses never changed, he found his career path changed drastically when he decided that joining forces with Rodney in a construction business would be rewarding. Nate had previously done small jobs, after work, with Rodney.',
-    about2:
+    image: nathan,
+    text: 'Nate always loved building things as a child. He would build anything from birdhouses to chicken coops, he loved all projects including restoring guitars. In Highschool, Nate was very involved in technical theater, building stage sets and platforms. After high school, Nate did not immediately start in the construction business. After serving a church mission, Nate attended school and became a veterinary technician. For 4 years, he worked as a vet tech in an equine hospital. Although his love for horses never changed, he found his career path changed drastically when he decided that joining forces with Rodney in a construction business would be rewarding. Nate had previously done small jobs, after work, with Rodney.',
+    text2:
       'Now with Oak and Stone started, Nate has really enjoyed learning the trade and gaining the skills associated with general construction. He and Rodney have been working together full-time now since 2019. Nate has a great attention to detail and is very forward thinking. He has so much fun working with Rod. He thoroughly enjoys learning and doing honest, rewarding, beautiful work.'
   }
 ];

@@ -22,8 +22,6 @@ export const Landing = () => {
         <SingleTestimonial />
         <ThreeTestimonials />
         <Spacer />
-        <Spacer />
-        <Spacer />
       </div>
     </>
   );
