@@ -15,7 +15,7 @@ export const SingleTestimonial = () => {
   };
 
   return (
-    <div className="relative text-brown">
+    <div className="relative text-brown xxl:hidden">
       {testimonialsData.map((item, index) => (
         <>
           <div

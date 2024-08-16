@@ -3,6 +3,7 @@ import { Faqs } from 'components/Faqs';
 import { Services } from 'components/Services';
 import { Spacer } from 'components/Spacer';
 import { SingleTestimonial } from 'components/SingleTestimonial';
+import { ThreeTestimonials } from 'components/ThreeTestimonials';
 
 export const Landing = () => {
   return (
@@ -20,6 +21,7 @@ export const Landing = () => {
         <Services />
         <Spacer />
         <SingleTestimonial />
+        <ThreeTestimonials />
         <Spacer />
         <Spacer />
         <Spacer />
