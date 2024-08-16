@@ -7,13 +7,20 @@ import { Drawer } from 'utils/Drawer';
 export const Nav = () => {
   const [open, setOpen] = useState(false);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <>
       {/* desktop */}
       {/* <div className="hidden w-full h-28 md:flex"></div> */}
       <div className="sticky top-0 z-50 hidden w-full bg-white md:flex">
         <div className="flex flex-wrap items-center justify-between w-11/12 mx-auto">
-          <Link to="/" className="hidden md:block">
+          <Link to="/" onClick={scrollToTop} className="hidden md:block">
             <img
               alt="oak and stone logo"
               src={logo}
@@ -25,7 +32,10 @@ export const Nav = () => {
               <Link
                 to={item.link}
                 key={index}
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false);
+                  scrollToTop();
+                }}
                 className="p-3 xl:px-10 hover:bg-brown hover:bg-opacity-5">
                 {item.text}
               </Link>
@@ -35,7 +45,7 @@ export const Nav = () => {
       </div>
 
       {/* mobile */}
-      <div className={cn('w-full h-11 bg-brown md:hidden')}>
+      <div className={cn('w-full h-11 bg-brown md:hidden sticky top-0 z-50')}>
         <div
           className={cn(
             'size-11 grid place-content-center cursor-pointer duration-200  mx-auto'
@@ -58,7 +68,7 @@ export const Nav = () => {
             )}></div>
         </div>
       </div>
-      <Link to="/" className="md:hidden">
+      <Link to="/" onClick={scrollToTop} className="md:hidden">
         <img
           alt="oak and stone logo"
           src={logo}
@@ -66,17 +76,26 @@ export const Nav = () => {
         />
         <div className="w-10/12 h-[1px] bg-brown  mx-auto md:hidden"></div>
       </Link>
-      <div className="absolute w-full bg-white shadow-2xl text-brown md:hidden top-11">
+      <div className="sticky z-40 w-full bg-white shadow-2xl text-brown md:hidden top-11">
         <Drawer show={open} duration={'500'}>
           <div className="flex flex-col w-10/12 py-3 mx-auto text-xs divide-y divide-brown divide-opacity-10">
-            <Link to="/" onClick={() => setOpen(false)} className="py-3">
+            <Link
+              to="/"
+              onClick={() => {
+                setOpen(false);
+                scrollToTop();
+              }}
+              className="py-3">
               Home
             </Link>
             {navOptions.map((item, index) => (
               <Link
                 to={item.link}
                 key={index}
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false);
+                  scrollToTop();
+                }}
                 className="py-3">
                 {item.text}
               </Link>
