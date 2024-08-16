@@ -2,6 +2,7 @@ import { Carousel } from 'components/Carousel';
 import { Faqs } from 'components/Faqs';
 import { Services } from 'components/Services';
 import { Spacer } from 'components/Spacer';
+import { SingleTestimonial } from 'components/SingleTestimonial';
 
 export const Landing = () => {
   return (
@@ -18,6 +19,7 @@ export const Landing = () => {
         <Faqs />
         <Services />
         <Spacer />
+        <SingleTestimonial />
         <Spacer />
         <Spacer />
         <Spacer />
