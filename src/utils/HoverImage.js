@@ -13,8 +13,6 @@ function HoverImage({ children, image, width, height, offsetX, offsetY }) {
     });
   };
 
-  console.log(image);
-
   return (
     <div
       ref={hoverContainer}

@@ -11,7 +11,7 @@ export const Nav = () => {
     <>
       {/* desktop */}
       {/* <div className="hidden w-full h-28 md:flex"></div> */}
-      <div className="sticky top-0 z-50 hidden w-full bg-white md:flex">
+      <div className="sticky top-0 z-50 hidden w-full bg-white shadow-sm md:flex">
         <div className="flex flex-wrap items-center justify-between w-11/12 mx-auto">
           <Link to="/" className="hidden md:block">
             <img
@@ -30,9 +30,6 @@ export const Nav = () => {
                 {item.text}
               </Link>
             ))}
-            {/* <p className="absolute text-xs right-10 -top-4 text-lightBrown">
-              (801) 430-6451
-            </p> */}
           </div>
         </div>
       </div>

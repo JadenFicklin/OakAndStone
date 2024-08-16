@@ -5,7 +5,6 @@ import { cn } from 'utils/cn';
 
 export const Faqs = () => {
   const [currentFaq, setCurrentFaq] = useState(0);
-  console.log(currentFaq);
   return (
     <>
       <div className="grid items-center grid-cols-1 mx-auto my-20 xl:w-10/12 md:grid-cols-2 xl:relative xl:left-8">

@@ -7,6 +7,7 @@ import { Process } from 'pages/Process';
 import { Careers } from 'pages/Careers';
 import { Contact } from 'pages/Contact';
 import { Nav } from 'components/Nav';
+import { Footer } from 'components/Footer';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/careers" element={<Careers />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
