@@ -35,7 +35,9 @@ export const ThreeTestimonials = () => {
   }
 
   return (
-    <div className="hidden xxl:block relative text-brown">
+    <div className="relative hidden xxl:block text-brown">
+      <h2 className="w-full my-20 mt-32 text-4xl text-center">Testimonials</h2>
+
       <div className="relative flex justify-between mx-auto space-x-4 w-max">
         <div
           className="absolute top-0 grid content-center h-full cursor-pointer -left-7 w-max"

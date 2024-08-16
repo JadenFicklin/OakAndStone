@@ -16,6 +16,7 @@ export const SingleTestimonial = () => {
 
   return (
     <div className="relative text-brown xxl:hidden">
+      <h2 className="w-full my-20 mt-32 text-4xl text-center">Testimonials</h2>
       {testimonialsData.map((item, index) => (
         <>
           <div

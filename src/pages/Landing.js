@@ -19,7 +19,6 @@ export const Landing = () => {
         <Carousel />
         <Faqs />
         <Services />
-        <Spacer />
         <SingleTestimonial />
         <ThreeTestimonials />
         <Spacer />
