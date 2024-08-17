@@ -34,7 +34,7 @@ export const Carousel = () => {
   };
 
   return (
-    <div className="carousel-container overflow-hidden relative w-[98%] mx-auto max-h-[800px]">
+    <div className="overflow-hidden relative w-[98%] mx-auto max-h-[800px]">
       <div
         className={`carousel-inner w-full h-full flex transition-transform duration-500 ease-in-out ${
           isSliding ? 'transform -translate-x-full' : ''

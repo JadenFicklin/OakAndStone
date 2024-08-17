@@ -12,6 +12,10 @@ module.exports = {
       xxxl: '1400px'
     },
     extend: {
+      boxShadow: {
+        custom:
+          'inset 0 20px 20px -20px rgba(0, 0, 0, 0.9), inset 0 -20px 20px -20px rgba(0, 0, 0, 0.9)'
+      },
       colors: {
         brown: '#40280A',
         lightBrown: '#906C56'

@@ -15,8 +15,8 @@ export const Services = () => {
           parallaxSpeed={0.1}
           classname="text-5xl md:text-7xl"
           overlayColor="rgba(143, 99, 70, 0.4)"></ParallaxSection>
-        <div className="absolute w-10/12 text-white -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-          <h2 className="w-full py-10 text-6xl text-white border-b">
+        <div className="absolute w-full h-full p-5 px-32 text-white -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 top-1/2 left-1/2 shadow-custom">
+          <h2 className="w-full py-10 text-6xl text-white border-b border-white border-opacity-25">
             Our services
           </h2>
           <div className="hidden lg:block">
@@ -29,7 +29,7 @@ export const Services = () => {
                 offsetX={35}
                 offsetY={-5}>
                 <Link to={item.link}>
-                  <div className="pl-3 text-xl border-b py-7 hover:bg-black hover:bg-opacity-40">
+                  <div className="pl-3 text-xl border-b border-white border-opacity-25 py-7 hover:bg-black hover:bg-opacity-50">
                     {item.name}
                   </div>
                 </Link>
