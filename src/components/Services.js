@@ -9,8 +9,8 @@ export const Services = () => {
     <>
       <ParallaxSection
         backgroundImage={services}
-        height="300px"
-        initialOffset={-100}
+        height="1000px"
+        initialOffset={-0}
         parallaxSpeed={0.1}
         classname="text-5xl md:text-7xl"
         overlayColor="rgba(143, 99, 70, 0.4)">
@@ -44,12 +44,6 @@ export const Services = () => {
           ))}
         </div>
       </div>
-      <ParallaxSection
-        backgroundImage={services}
-        height="100px"
-        initialOffset={-250}
-        parallaxSpeed={0.1}
-        overlayColor="rgba(143, 99, 70, 0.4)"></ParallaxSection>
     </>
   );
 };

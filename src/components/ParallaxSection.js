@@ -8,6 +8,7 @@ export const ParallaxSection = ({
   initialOffset = -300,
   parallaxSpeed = 0.1,
   overlayColor = 'rgba(143, 99, 70, 0.4)',
+
   children
 }) => {
   const [offsetY, setOffsetY] = useState(0);
