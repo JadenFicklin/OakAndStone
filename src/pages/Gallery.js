@@ -1,21 +1,24 @@
 import { Title } from 'components/Title';
 import { galleryData } from 'data/Gallery';
-import { ParallaxSectionTwo } from 'components/ParallaxSectionTwo';
+import { Link } from 'react-router-dom';
 
 export const Gallery = () => {
   return (
     <>
-      <Title>Our Services</Title>
-      <div className="grid -mt-10 text-white gap-y-10">
+      <Title>Gallery</Title>
+      <div className="flex flex-wrap items-start justify-center w-9/12 gap-10 py-10 mx-auto -mt-10 text-white xl:py-32 ">
         {galleryData.map((item, index) => (
-          <ParallaxSectionTwo
+          <Link
             key={index}
-            image={item.image}
-            title={item.title}
-            text={item.text}
-            button={item.button}
-            link={item.link}
-          />
+            to={item.link}
+            className="object-cover bg-center size-64 w-[240px] relative hover:scale-105 duration-150 cursor-pointer"
+            style={{
+              backgroundImage: `url(${item.image})`
+            }}>
+            <div className="absolute w-11/12 p-2 text-lg text-white bg-black bottom-10 bg-opacity-60 h-max">
+              {item.title}
+            </div>
+          </Link>
         ))}
       </div>
     </>

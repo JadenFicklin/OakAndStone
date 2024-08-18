@@ -8,6 +8,7 @@ import { Careers } from 'pages/Careers';
 import { Contact } from 'pages/Contact';
 import { Nav } from 'components/Nav';
 import { Footer } from 'components/Footer';
+import { GallerySub } from 'pages/GallerySub';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/gallery/custom-cabinets" element={<GallerySub />} />
         <Route path="/process" element={<Process />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/contact" element={<Contact />} />

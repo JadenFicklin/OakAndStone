@@ -16,7 +16,7 @@ export const Services = () => {
           classname="text-5xl md:text-7xl"
           overlayColor="rgba(143, 99, 70, 0.4)"></ParallaxSection>
         <div className="absolute w-full h-full p-5 px-32 text-white -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 top-1/2 left-1/2 shadow-custom">
-          <h2 className="w-full py-10 text-6xl text-white border-b border-white border-opacity-25">
+          <h2 className="w-full py-10 text-4xl text-white border-b border-white border-opacity-25 lg:text-6xl">
             Our services
           </h2>
           <div className="hidden lg:block">
