@@ -6,20 +6,19 @@ export const About = () => {
   return (
     <div className="text-brown">
       <Title>About</Title>
+
+      <h2 className="w-10/12 py-10 mx-auto -mt-10 text-3xl text-center md:text-6xl text-brown playfair">
+        Meet the Craftsmen Behind Oak and Stone: A Legacy of Precision and
+        Passion
+      </h2>
       {/* team behind oak and stone */}
       <div className="grid w-10/12 mx-auto xl:my-20 xl:grid-cols-2 gap-y-6 ">
-        <h2 className="text-2xl font-medium text-center xl:hidden xl:text-left ">
-          {aboutHeaderData.title}
-        </h2>
         <img
           src={aboutHeaderData.image}
           alt="oak and stone team building their warehouse"
           className="object-cover my-6 xl:order-2 xl:h-full xl:my-0"
         />
         <div className="grid mx-auto h-max gap-y-6 xl:w-10/12 xl:text-xl">
-          <h2 className="hidden text-2xl font-medium text-center xl:text-left xl:block xl:text-2xl">
-            {aboutHeaderData.title}
-          </h2>
           <p>
             {aboutHeaderData.text}
             <br></br>

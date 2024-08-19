@@ -9,7 +9,7 @@ export const GallerySub = ({ path }) => {
 
   return (
     <>
-      <Title classname="sticky flex flex-wrap items-center top-10 md:top-[120px] xl:top-[132px] z-40">
+      <Title>
         <Link to="/gallery" className="mx-5">
           <IoIosArrowRoundBack className="text-white size-10" />
         </Link>

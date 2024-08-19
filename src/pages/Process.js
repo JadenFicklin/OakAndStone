@@ -6,6 +6,11 @@ export const Process = () => {
   return (
     <>
       <Title>Our process</Title>
+
+      <h2 className="w-8/12 py-10 mx-auto -mt-10 text-3xl text-center md:text-6xl text-brown playfair">
+        From Concept to Creation: Our Step-by-Step Process
+      </h2>
+
       <div className="grid w-10/12 mx-auto mb-20 lg:w-8/12 gap-y-6 text-brown">
         {processData.map((item, index) => (
           <>
