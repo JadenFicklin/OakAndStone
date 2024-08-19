@@ -10,7 +10,12 @@ import { Nav } from 'components/Nav';
 import { Footer } from 'components/Footer';
 import { GallerySub } from 'pages/GallerySub';
 
+import { useAtom } from 'jotai';
+import { galleryAtom } from 'atoms/galleryAtom';
+
 function App() {
+  const [gallery] = useAtom(galleryAtom);
+
   return (
     <Router>
       <Nav />
@@ -18,7 +23,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/gallery/custom-cabinets" element={<GallerySub />} />
+        <Route path={gallery} element={<GallerySub path={gallery} />} />
         <Route path="/process" element={<Process />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/contact" element={<Contact />} />

@@ -2,12 +2,20 @@ import { ParallaxSection } from 'components/ParallaxSection';
 import { Spacer } from 'components/Spacer';
 import { Title } from 'components/Title';
 import { galleryData } from 'data/Gallery';
+import { IoIosArrowRoundBack } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
-export const GallerySub = () => {
+export const GallerySub = ({ path }) => {
   return (
     <>
-      <Title>Gallery</Title>
-      <div className="-mt-10 text-white">
+      <Title classname="flex flex-wrap items-center">
+        {' '}
+        <Link to="/gallery" className="mx-5">
+          <IoIosArrowRoundBack className="text-white size-10" />
+        </Link>
+        Gallery {path}
+      </Title>
+      <div className="relative -mt-10 text-white">
         <ParallaxSection
           backgroundImage={galleryData[0].image}
           height="400px"

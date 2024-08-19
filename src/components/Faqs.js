@@ -5,6 +5,14 @@ import { cn } from 'utils/cn';
 
 export const Faqs = () => {
   const [currentFaq, setCurrentFaq] = useState(0);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <>
       <div className="grid items-center grid-cols-1 mx-auto my-20 xl:w-10/12 md:grid-cols-2 xl:relative xl:left-8">
@@ -29,7 +37,10 @@ export const Faqs = () => {
                 <p className="py-3 text-xs">
                   {item.text}{' '}
                   {currentFaq === index && (
-                    <Link to={item.link} className="ml-1 text-xs text-blue-400">
+                    <Link
+                      to={item.link}
+                      onClick={scrollToTop}
+                      className="ml-1 text-xs text-blue-400">
                       {item.button}
                     </Link>
                   )}

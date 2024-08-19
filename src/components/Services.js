@@ -5,6 +5,13 @@ import services from 'assets/images/landing/services.jpg';
 import { ParallaxSection } from 'components/ParallaxSection';
 
 export const Services = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <>
       <div className="relative">
@@ -28,7 +35,7 @@ export const Services = () => {
                 height="250px"
                 offsetX={35}
                 offsetY={-5}>
-                <Link to={item.link}>
+                <Link to={item.link} onClick={scrollToTop}>
                   <div className="pl-3 text-xl border-b border-white border-opacity-25 py-7 hover:bg-black hover:bg-opacity-50">
                     {item.name}
                   </div>
@@ -38,7 +45,7 @@ export const Services = () => {
           </div>
           <div className="lg:hidden">
             {landingServicesData.map((item) => (
-              <Link to={item.link} key={item.name}>
+              <Link to={item.link} onClick={scrollToTop} key={item.name}>
                 <div className="border-b-[1px] py-7 pl-3 hover:bg-brown hover:bg-opacity-5">
                   {item.name}
                 </div>
