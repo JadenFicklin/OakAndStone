@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 
 export const Gallery = () => {
   const [gallery, setGallery] = useAtom(galleryAtom);
-
+  console.log(gallery);
   return (
     <>
-      <Title>Gallery - {gallery}</Title>
+      <Title>Gallery</Title>
       <div className="flex flex-wrap items-start justify-center w-9/12 gap-10 py-10 mx-auto -mt-10 text-white xl:py-32 ">
         {galleryData.map((item, index) => (
           <Link
