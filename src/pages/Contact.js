@@ -1,18 +1,8 @@
 import { Title } from 'components/Title';
-// import { useState } from 'react';
 import Swal from 'sweetalert2';
 
 export const Contact = () => {
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [subject, setSubject] = useState('');
-  // const [message, setMessage] = useState('');
-
-  // const handleFormSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(name, email, subject, message);
-  // };
-  const { EMAIL_ACCESS_KEY } = import.meta.env;
+  const EMAIL_ACCESS_KEY = process.env.REACT_APP_EMAIL_ACCESS_KEY;
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -55,39 +45,21 @@ export const Contact = () => {
             <p>
               Name <span className="text-xs opacity-50">(required)</span>
             </p>
-            <input
-              type="text"
-              required
-              className="border"
-              // onChange={(e) => setName(e.target.value)}
-              name="name"
-            />
+            <input type="text" required className="border" name="name" />
           </div>
           <div>
             <p>
               Email Address{' '}
               <span className="text-xs opacity-50">(required)</span>
             </p>
-            <input
-              type="email"
-              required
-              className="border"
-              // onChange={(e) => setEmail(e.target.value)}
-              name="email"
-            />
+            <input type="email" required className="border" name="email" />
           </div>
 
           <div>
             <p>
               Message <span className="text-xs opacity-50">(required)</span>
             </p>
-            <textarea
-              type="text"
-              required
-              className="border"
-              // onChange={(e) => setMessage(e.target.value)}
-              name="message"
-            />
+            <textarea type="text" required className="border" name="message" />
           </div>
 
           <button
