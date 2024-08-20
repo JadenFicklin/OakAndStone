@@ -13,7 +13,7 @@ export const Process = () => {
 
       <div className="grid w-10/12 mx-auto mb-20 lg:w-8/12 gap-y-6 text-brown">
         {processData.map((item, index) => (
-          <>
+          <div key={index}>
             <div className="grid gap-y-6 lg:grid-cols-2 lg:items-center">
               <h2 className="text-3xl lg:hidden">{item.title}</h2>
               <img
@@ -31,7 +31,7 @@ export const Process = () => {
                 'w-full h-[1px] bg-brown my-10',
                 index === processData.length - 1 && 'hidden'
               )}></div>
-          </>
+          </div>
         ))}
       </div>
     </>

@@ -34,8 +34,10 @@ export const About = () => {
       {/* devider */}
       <div className="w-10/12 mx-auto h-[1px] my-20 bg-brown"></div>
       {/* members */}
-      {aboutPeopleData.map((item) => (
-        <div className="grid w-10/12 grid-cols-1 mx-auto my-6 mb-20 xl:text-xl xl:grid-cols-2 gap-y-6 xl:gap-x-20 h-max">
+      {aboutPeopleData.map((item, index) => (
+        <div
+          key={index}
+          className="grid w-10/12 grid-cols-1 mx-auto my-6 mb-20 xl:text-xl xl:grid-cols-2 gap-y-6 xl:gap-x-20 h-max">
           <img
             src={item.image}
             alt={item.name}
