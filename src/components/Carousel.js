@@ -19,7 +19,7 @@ export const Carousel = () => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
         setIsSliding(false);
       }, 500);
-    }, 7000);
+    }, 5000);
   }, [images.length]);
 
   useEffect(() => {

@@ -13,14 +13,13 @@ export const Services = () => {
       behavior: 'smooth'
     });
   };
-  const [gallery, setGallery] = useAtom(galleryAtom);
+  const [, setGallery] = useAtom(galleryAtom);
 
   const serviceClicked = (item) => {
     setGallery(item.link);
     scrollToTop();
   };
 
-  console.log(gallery);
   return (
     <>
       <div className="relative">

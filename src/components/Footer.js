@@ -11,7 +11,7 @@ export const Footer = () => {
 
   return (
     <>
-      <div className="pt-10 text-center bg-[#D9D9D9] text-brown bg-opacity-10 border-t border-black border-opacity-40">
+      <div className="pt-10 text-center bg-[#D9D9D9] text-brown bg-opacity-10 border-t border-black border-opacity-40 relative">
         <Link to="/" onClick={handleLogoClick}>
           <img src={logo} alt="oak and stone logo" className="h-12 mx-auto" />
         </Link>
@@ -19,6 +19,11 @@ export const Footer = () => {
         <p className="py-6 text-xs font-semibold">
           Copyright 2024 Oak and Stone Remodel
         </p>
+        <Link
+          to="/login"
+          className="absolute text-xs text-blue-500 bottom-6 right-5">
+          login
+        </Link>
       </div>
     </>
   );

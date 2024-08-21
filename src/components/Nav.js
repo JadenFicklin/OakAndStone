@@ -8,7 +8,7 @@ import { navAtom } from 'atoms/navAtom';
 
 export const Nav = () => {
   const [open, setOpen] = useState(false);
-  const [nav, setNav] = useAtom(navAtom);
+  const [, setNav] = useAtom(navAtom);
   const location = useLocation();
 
   const scrollToTop = () => {
@@ -17,7 +17,6 @@ export const Nav = () => {
       behavior: 'smooth'
     });
   };
-  console.log(nav);
 
   return (
     <>

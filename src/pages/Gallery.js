@@ -5,8 +5,7 @@ import { useAtom } from 'jotai';
 import { Link } from 'react-router-dom';
 
 export const Gallery = () => {
-  const [gallery, setGallery] = useAtom(galleryAtom);
-  console.log(gallery);
+  const [, setGallery] = useAtom(galleryAtom);
   return (
     <>
       <Title>Gallery</Title>

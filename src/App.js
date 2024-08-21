@@ -12,6 +12,7 @@ import { GallerySub } from 'pages/GallerySub';
 
 import { useAtom } from 'jotai';
 import { galleryAtom } from 'atoms/galleryAtom';
+import { Login } from 'pages/Login';
 
 function App() {
   const [gallery] = useAtom(galleryAtom);
@@ -27,6 +28,7 @@ function App() {
         <Route path="/process" element={<Process />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
     </Router>
