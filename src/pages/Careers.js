@@ -38,6 +38,9 @@ export const Careers = () => {
   return (
     <>
       <Title>Careers</Title>
+      <h2 className="w-10/12 py-10 mx-auto -mt-10 text-3xl text-center md:text-6xl text-brown playfair">
+        Join Our Team: Build a Future with Oak and Stone
+      </h2>
       <div className="grid w-10/12 md:w-9/12 grid-cols-1 mx-auto md:grid-cols-[70%_30%]">
         <form
           onSubmit={onSubmit}
