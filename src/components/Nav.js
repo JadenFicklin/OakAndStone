@@ -3,9 +3,12 @@ import logo from 'assets/images/logo/logo.svg';
 import { useState } from 'react';
 import { cn } from 'utils/cn';
 import { Drawer } from 'utils/Drawer';
+import { useAtom } from 'jotai';
+import { navAtom } from 'atoms/navAtom';
 
 export const Nav = () => {
   const [open, setOpen] = useState(false);
+  const [nav, setNav] = useAtom(navAtom);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -17,7 +20,6 @@ export const Nav = () => {
   return (
     <>
       {/* desktop */}
-      {/* <div className="hidden w-full h-28 md:flex"></div> */}
       <div className="sticky top-0 z-50 hidden w-full bg-white md:flex">
         <div className="flex flex-wrap items-center justify-between w-11/12 mx-auto">
           <Link to="/" onClick={scrollToTop} className="hidden md:block">
@@ -35,8 +37,13 @@ export const Nav = () => {
                 onClick={() => {
                   setOpen(false);
                   scrollToTop();
+                  setNav(item.text);
                 }}
-                className="p-3 xl:px-10 hover:bg-brown hover:bg-opacity-5">
+                className={cn(
+                  'p-3 xl:px-10 hover:bg-brown hover:bg-opacity-5 duration-150',
+                  nav.toUpperCase() === item.text.toUpperCase() &&
+                    'bg-brown bg-opacity-10 duration-150'
+                )}>
                 {item.text}
               </Link>
             ))}
@@ -85,7 +92,7 @@ export const Nav = () => {
                 setOpen(false);
                 scrollToTop();
               }}
-              className="py-3">
+              className="py-3 ">
               Home
             </Link>
             {navOptions.map((item, index) => (
