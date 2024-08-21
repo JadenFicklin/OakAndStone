@@ -90,7 +90,11 @@ export const Contact = () => {
             We work in the greater Wasatch Front, from Logan to Lehi
           </p>
           <h2 className="text-base font-medium">Contact</h2>
-          <p className="my-2">oakandstonecabinets@gmail.com</p>
+          <a
+            href="mailto:oakandstonecabinets@gmail.com"
+            className="my-2 text-blue-600 underline">
+            oakandstonecabinets@gmail.com
+          </a>
           <p className="my-2">(801) 430-6451</p>
           <p className="my-2">(385) 238-9152</p>
         </div>
