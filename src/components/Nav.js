@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from 'assets/images/logo/logo.svg';
 import { useState } from 'react';
 import { cn } from 'utils/cn';
@@ -9,6 +9,7 @@ import { navAtom } from 'atoms/navAtom';
 export const Nav = () => {
   const [open, setOpen] = useState(false);
   const [nav, setNav] = useAtom(navAtom);
+  const location = useLocation();
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -16,6 +17,7 @@ export const Nav = () => {
       behavior: 'smooth'
     });
   };
+  console.log(nav);
 
   return (
     <>
@@ -30,23 +32,26 @@ export const Nav = () => {
             />
           </Link>
           <div className="relative flex p-3 my-3 text-xs uppercase text-brown">
-            {navOptions.map((item, index) => (
-              <Link
-                to={item.link}
-                key={index}
-                onClick={() => {
-                  setOpen(false);
-                  scrollToTop();
-                  setNav(item.text);
-                }}
-                className={cn(
-                  'p-3 xl:px-10 hover:bg-brown hover:bg-opacity-5 duration-150',
-                  nav.toUpperCase() === item.text.toUpperCase() &&
-                    'bg-brown bg-opacity-10 duration-150'
-                )}>
-                {item.text}
-              </Link>
-            ))}
+            {navOptions.map((item, index) => {
+              const isActive = location.pathname === item.link;
+
+              return (
+                <Link
+                  to={item.link}
+                  key={index}
+                  onClick={() => {
+                    setOpen(false);
+                    scrollToTop();
+                    setNav(item.text);
+                  }}
+                  className={cn(
+                    'p-3 xl:px-10 hover:bg-brown hover:bg-opacity-5 duration-150',
+                    isActive && 'bg-brown bg-opacity-10 duration-150'
+                  )}>
+                  {item.text}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
