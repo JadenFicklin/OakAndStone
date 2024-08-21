@@ -1,14 +1,16 @@
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from 'assets/images/logo/logo.svg';
-import { useState } from 'react';
 import { cn } from 'utils/cn';
 import { Drawer } from 'utils/Drawer';
 import { useAtom } from 'jotai';
 import { navAtom } from 'atoms/navAtom';
+import { userAtom } from 'atoms/userAtom'; // Import the userAtom
 
 export const Nav = () => {
   const [open, setOpen] = useState(false);
   const [, setNav] = useAtom(navAtom);
+  const [user] = useAtom(userAtom); // Access the userAtom
   const location = useLocation();
 
   const scrollToTop = () => {
@@ -53,6 +55,11 @@ export const Nav = () => {
             })}
           </div>
         </div>
+        {user && user.email && (
+          <div className="absolute p-2 py-1 mt-2 text-xs text-white rounded-md bg-brown top-2 right-5">
+            Logged in as {user.email}
+          </div>
+        )}
       </div>
 
       {/* mobile */}
@@ -79,6 +86,11 @@ export const Nav = () => {
             )}></div>
         </div>
       </div>
+      {user && user.email && (
+        <div className="absolute p-2 py-1 mt-2 text-xs text-white -translate-x-1/2 rounded-md w-max left-1/2 top-10 bg-brown">
+          Logged in as {user.email}
+        </div>
+      )}
       <Link to="/" onClick={scrollToTop} className="md:hidden">
         <img
           alt="oak and stone logo"

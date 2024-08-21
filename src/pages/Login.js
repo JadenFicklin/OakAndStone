@@ -4,14 +4,21 @@ import { auth } from '../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import { userAtom } from '../atoms/userAtom'; // Make sure the path to the atom is correct
+import { userAtom } from '../atoms/userAtom';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [, setUser] = useAtom(userAtom); // Access the userAtom and the setter function
+  const [, setUser] = useAtom(userAtom);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,7 +32,6 @@ export const Login = () => {
       );
       const user = userCredential.user;
 
-      // Update the global state with the user object
       setUser(user);
 
       Swal.fire({
@@ -35,6 +41,7 @@ export const Login = () => {
       });
 
       navigate('/');
+      scrollToTop();
     } catch (err) {
       setError(err.message);
       console.error('Login failed', err);
