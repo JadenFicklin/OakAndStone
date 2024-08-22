@@ -8,26 +8,26 @@ export const landingServicesData = [
   {
     name: 'Custom Cabinets',
     image: customCabinets,
-    link: 'gallery/custom-cabinets'
+    slug: 'custom-cabinets'
   },
   {
     name: 'Kitchen Remodels',
     image: kitchenRemodels,
-    link: 'gallery/kitchen-remodels'
+    slug: 'kitchen-remodels'
   },
   {
     name: 'Bathroom Remodels',
     image: bathroomRemodels,
-    link: 'gallery/bathroom-remodels'
+    slug: 'bathroom-remodels'
   },
   {
     name: 'Custom Woodwork',
     image: customWoodwork,
-    link: 'gallery/custom-woodwork'
+    slug: 'custom-woodwork'
   },
   {
     name: 'Other Projects',
     image: otherProjects,
-    link: 'gallery/other-projects'
+    slug: 'other-projects'
   }
 ];

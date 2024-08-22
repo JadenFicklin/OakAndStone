@@ -17,7 +17,7 @@ export const Gallery = () => {
         {galleryData.map((item, index) => (
           <Link
             key={index}
-            to={item.link}
+            to={`/gallery/${item.slug}`}
             className="object-cover bg-center size-64 w-full md:w-[240px] relative hover:scale-105 duration-150 cursor-pointer"
             style={{
               backgroundImage: `url(${item.image})`

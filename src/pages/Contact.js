@@ -98,8 +98,16 @@ export const Contact = () => {
             className="my-2 text-blue-600 underline">
             oakandstonecabinets@gmail.com
           </a>
-          <p className="my-2">(801) 430-6451</p>
-          <p className="my-2">(385) 238-9152</p>
+          <p>
+            <a href="tel:8014306451" className="my-2">
+              (801) 430-6451
+            </a>
+          </p>
+          <p>
+            <a href="tel:3852389152" className="my-2">
+              (385) 238-9152
+            </a>
+          </p>
         </div>
       </div>
     </>

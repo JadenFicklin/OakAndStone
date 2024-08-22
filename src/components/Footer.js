@@ -41,7 +41,9 @@ export const Footer = () => {
         <Link to="/" onClick={handleLogoClick}>
           <img src={logo} alt="oak and stone logo" className="h-12 mx-auto" />
         </Link>
-        <p className="my-6 text-xs mb-14">(801) 430-6451</p>
+        <a href="tel:8014306451" className="my-6 text-xs mb-14">
+          (801) 430-6451
+        </a>
         <p className="py-6 text-xs font-semibold">
           Copyright 2024 Oak and Stone Remodel
         </p>

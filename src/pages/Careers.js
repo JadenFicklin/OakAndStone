@@ -46,8 +46,8 @@ export const Careers = () => {
           onSubmit={onSubmit}
           className="text-gray-600 max-w-[900px] md:w-11/12 md:pr-10 md:h-max md:my-10 md:mb-20 md:border-r ">
           <h2 className="my-10 text-lg text-center">
-            For all job inquiries: fill out the form below or call: (801)
-            430-6451
+            For all job inquiries: fill out the form below or call:{' '}
+            <a href="tel:8014306451">(801) 430-6451</a>
           </h2>
           <div className="my-2">
             <p className="text-xl">
@@ -101,8 +101,16 @@ export const Careers = () => {
             className="my-2 text-blue-600 underline">
             oakandstonecabinets@gmail.com
           </a>
-          <p className="my-2">(801) 430-6451</p>
-          <p className="my-2">(385) 238-9152</p>
+          <p>
+            <a href="tel:8014306451" className="my-2">
+              (801) 430-6451
+            </a>
+          </p>
+          <p>
+            <a href="tel:3852389152" className="my-2">
+              (385) 238-9152
+            </a>
+          </p>
         </div>
       </div>
     </>

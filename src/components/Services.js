@@ -43,7 +43,7 @@ export const Services = () => {
                 height="250px"
                 offsetX={35}
                 offsetY={-5}>
-                <Link to={item.link} onClick={scrollToTop}>
+                <Link to={`/gallery/${item.slug}`} onClick={scrollToTop}>
                   <div className="pl-3 text-xl border-b border-white border-opacity-25 py-7 hover:bg-black hover:bg-opacity-50">
                     {item.name}
                   </div>

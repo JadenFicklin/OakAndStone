@@ -4,8 +4,13 @@ import { galleryData } from 'data/Gallery';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 
+import { useParams } from 'react-router-dom';
+
 export const GallerySub = ({ path }) => {
-  const galleryItem = galleryData?.find((item) => item.link === path);
+  const { subgallery } = useParams();
+  const galleryItem = galleryData?.find((item) => item.slug === subgallery);
+
+  if (!galleryItem) return <div>Gallery not found</div>;
 
   return (
     <>
