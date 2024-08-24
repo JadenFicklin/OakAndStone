@@ -7,7 +7,7 @@ export const About = () => {
     <div className="text-brown">
       <Title>About</Title>
 
-      <h2 className="w-10/12 py-10 mx-auto -mt-10 text-3xl text-center md:text-6xl text-brown playfair">
+      <h2 className="w-10/12 py-10 mx-auto text-3xl text-center md:text-6xl text-brown playfair">
         Meet the Craftsmen Behind Oak and Stone: A Legacy of Precision and
         Passion
       </h2>

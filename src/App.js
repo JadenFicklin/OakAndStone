@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation
+} from 'react-router-dom';
 import 'App.css';
 import { Landing } from 'pages/Landing';
 import { Gallery } from 'pages/Gallery';
@@ -9,13 +14,15 @@ import { Contact } from 'pages/Contact';
 import { Nav } from 'components/Nav';
 import { Footer } from 'components/Footer';
 import { GallerySub } from 'pages/GallerySub';
-
 import { Login } from 'pages/Login';
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const home = location.pathname === '/';
+
   return (
-    <Router>
-      <Nav />
+    <>
+      <Nav full={home} />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/about" element={<About />} />
@@ -27,6 +34,14 @@ function App() {
         <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

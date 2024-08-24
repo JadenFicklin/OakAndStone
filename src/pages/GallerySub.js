@@ -20,12 +20,12 @@ export const GallerySub = ({ path }) => {
         </Link>
         Gallery {galleryItem ? `- ${galleryItem.title}` : ''}
       </Title>
-      <div className="relative -mt-10 text-white">
+      <div className="relative text-white">
         {galleryItem && (
           <ParallaxSection
             backgroundImage={galleryItem.image}
             height="400px"
-            initialOffset={35}
+            initialOffset={-35}
             parallaxSpeed={0.1}
             classname="grid w-9/12 gap-10 text-5xl text-left md:text-7xl"
             overlayColor="rgba(143, 99, 70, 0.4)">

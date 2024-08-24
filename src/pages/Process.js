@@ -7,7 +7,7 @@ export const Process = () => {
     <>
       <Title>Our process</Title>
 
-      <h2 className="w-8/12 py-10 pb-20 mx-auto -mt-10 text-3xl text-center md:text-6xl text-brown playfair">
+      <h2 className="w-8/12 py-10 pb-20 mx-auto text-3xl text-center md:text-6xl text-brown playfair">
         From Concept to Creation: Our Step-by-Step Process
       </h2>
 

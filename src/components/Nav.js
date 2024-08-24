@@ -5,12 +5,12 @@ import { cn } from 'utils/cn';
 import { Drawer } from 'utils/Drawer';
 import { useAtom } from 'jotai';
 import { navAtom } from 'atoms/navAtom';
-import { userAtom } from 'atoms/userAtom'; // Import the userAtom
+import { userAtom } from 'atoms/userAtom';
 
-export const Nav = () => {
+export const Nav = ({ full }) => {
   const [open, setOpen] = useState(false);
   const [, setNav] = useAtom(navAtom);
-  const [user] = useAtom(userAtom); // Access the userAtom
+  const [user] = useAtom(userAtom);
   const location = useLocation();
 
   const scrollToTop = () => {
@@ -19,7 +19,6 @@ export const Nav = () => {
       behavior: 'smooth'
     });
   };
-
   return (
     <>
       {/* desktop */}
@@ -29,10 +28,14 @@ export const Nav = () => {
             <img
               alt="oak and stone logo"
               src={logo}
-              className="h-12 xl:h-16 my-9"
+              className={cn('h-8', full && 'my-9 h-12 xl:h-16 border-none')}
             />
           </Link>
-          <div className="relative flex p-3 my-3 text-xs uppercase text-brown">
+          <div
+            className={cn(
+              'relative flex  text-xs uppercase text-brown py-3',
+              full && 'p-3 my-3'
+            )}>
             {navOptions.map((item, index) => {
               const isActive = location.pathname === item.link;
 
