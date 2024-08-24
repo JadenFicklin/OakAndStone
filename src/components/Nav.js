@@ -104,7 +104,7 @@ export const Nav = ({ full }) => {
       </Link>
       <div
         className={cn(
-          'sticky z-50 w-full bg-white shadow-2xl text-brown md:hidden top-20',
+          'sticky z-50 w-full bg-white shadow-2xl text-brown md:hidden top-[76px]',
           full && 'top-11'
         )}>
         <Drawer show={open} duration={'500'}>
