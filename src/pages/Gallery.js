@@ -6,6 +6,14 @@ import { Link } from 'react-router-dom';
 
 export const Gallery = () => {
   const [, setGallery] = useAtom(galleryAtom);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <>
       <Title>Gallery</Title>
@@ -22,7 +30,10 @@ export const Gallery = () => {
             style={{
               backgroundImage: `url(${item.image})`
             }}
-            onClick={() => setGallery(item.link)}>
+            onClick={() => {
+              setGallery(item.link);
+              scrollToTop();
+            }}>
             <div className="absolute w-11/12 p-2 text-lg text-white bg-black bottom-10 bg-opacity-60 h-max">
               {item.title}
             </div>

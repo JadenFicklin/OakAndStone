@@ -42,7 +42,7 @@ export const GallerySub = ({ path }) => {
           <img
             src={item}
             alt={galleryItem.title}
-            className="w-full object-cover max-h-[800px]"
+            className="w-full object-cover max-h-[800px] max-w-[1200px] mx-auto"
           />
         ))}
       </div>
