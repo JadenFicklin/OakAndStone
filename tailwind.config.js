@@ -18,6 +18,7 @@ module.exports = {
       },
       colors: {
         brown: '#40280A',
+        darkBrown: '#40280A',
         lightBrown: '#906C56'
       }
     }

@@ -100,9 +100,13 @@ export const Nav = ({ full }) => {
           src={logo}
           className="h-16 mx-auto my-9"
         />
-        <div className="w-10/12 h-[1px] bg-brown  mx-auto md:hidden"></div>
+        <div className="w-10/12 h-[1px] bg-brown my-5 mx-auto md:hidden"></div>
       </Link>
-      <div className="sticky z-40 w-full bg-white shadow-2xl text-brown md:hidden top-11">
+      <div
+        className={cn(
+          'sticky z-50 w-full bg-white shadow-2xl text-brown md:hidden top-20',
+          full && 'top-11'
+        )}>
         <Drawer show={open} duration={'500'}>
           <div className="flex flex-col w-10/12 py-3 mx-auto text-xs divide-y divide-brown divide-opacity-10">
             <Link
