@@ -38,9 +38,10 @@ export const GallerySub = ({ path }) => {
         <div className="absolute w-full h-full p-5 px-32 text-white -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 top-1/2 left-1/2 shadow-custom"></div>
       </div>
       <div className="grid w-10/12 mx-auto my-6 gap-y-6">
-        {galleryItem.imageCollection.map((item) => (
+        {galleryItem.imageCollection.map((item, index) => (
           <img
             src={item}
+            key={index}
             alt={galleryItem.title}
             className="w-full object-cover max-h-[800px] max-w-[1200px] mx-auto"
           />

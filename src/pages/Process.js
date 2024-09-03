@@ -1,29 +1,60 @@
 import { Title } from 'components/Title';
-import { processData } from 'data/Process';
 import { cn } from 'utils/cn';
+import { EditableText } from 'utils/EditableText';
+import { useState, useEffect } from 'react';
+import { getDatabase, ref, get } from 'firebase/database';
 
 export const Process = () => {
+  const [processData, setProcessData] = useState([]);
+
+  useEffect(() => {
+    const fetchProcessData = async () => {
+      const db = getDatabase();
+      const processPageDataRef = ref(db, 'processPageData');
+      const snapshot = await get(processPageDataRef);
+      if (snapshot.exists()) {
+        setProcessData(snapshot.val());
+      } else {
+        console.log('No data available');
+      }
+    };
+
+    fetchProcessData();
+  }, []);
+
   return (
     <>
       <Title>Our process</Title>
 
-      <h2 className="w-8/12 py-10 pb-20 mx-auto text-3xl text-center md:text-6xl text-brown playfair">
-        From Concept to Creation: Our Step-by-Step Process
-      </h2>
+      <div className="w-8/12 py-10 pb-20 mx-auto text-center">
+        <EditableText
+          firebasePath="titles/process"
+          className="text-3xl md:text-6xl text-brown playfair"
+        />
+      </div>
 
       <div className="grid w-10/12 mx-auto mb-20 lg:w-8/12 gap-y-6 text-brown">
         {processData.map((item, index) => (
           <div key={index}>
             <div className="grid gap-y-6 lg:grid-cols-2 lg:items-center">
-              <h2 className="text-3xl lg:hidden">{item.title}</h2>
+              <EditableText
+                firebasePath={`processPageData/${index}/title`}
+                className="text-3xl lg:hidden"
+              />
               <img
                 src={item.image}
                 alt={item.title}
                 className="lg:order-2 lg:mx-auto"
               />
-              <div className="lg:grid lg:content-evenly lg:w-3/4 lg:h-3/4">
-                <h2 className="hidden text-3xl lg:block">{item.title}</h2>
-                <p>{item.text}</p>
+              <div className="lg:grid lg:content-evenly lg:w-3/4">
+                <EditableText
+                  firebasePath={`processPageData/${index}/title`}
+                  className="hidden my-6 text-3xl lg:block"
+                />
+                <EditableText
+                  className="my-2 text-base"
+                  firebasePath={`processPageData/${index}/text`}
+                />
               </div>
             </div>
             <div

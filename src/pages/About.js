@@ -1,6 +1,5 @@
 import { Title } from 'components/Title';
-import { aboutHeaderData } from 'data/About';
-import { aboutPeopleData } from 'data/About';
+import { aboutHeaderData, aboutPeopleData } from 'data/About';
 
 export const About = () => {
   return (
@@ -31,7 +30,7 @@ export const About = () => {
         </div>
       </div>
 
-      {/* devider */}
+      {/* divider */}
       <div className="w-10/12 mx-auto h-[1px] my-20 bg-brown"></div>
       {/* members */}
       {aboutPeopleData.map((item, index) => (
