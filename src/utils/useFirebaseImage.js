@@ -1,12 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getStorage, ref, getDownloadURL, uploadBytes } from 'firebase/storage';
-import { useAtom } from 'jotai';
-import { userAtom } from 'atoms/userAtom';
 
 export const useFirebaseImage = (imagePath) => {
-  const [user] = useAtom(userAtom);
-  console.log(user.email, 'this is the user');
-
   const [imageUrl, setImageUrl] = useState(null);
   const [error, setError] = useState(null);
   const [isUploading, setIsUploading] = useState(false);

@@ -1,12 +1,22 @@
-import heroOne from 'assets/images/landing/kitchen-remodel-8.jpg';
-import heroTwo from 'assets/images/landing/kitchen-remodel-3.jpg';
-import heroThree from 'assets/images/landing/kitchen-remodel-10.jpg';
-
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { cn } from 'utils/cn';
+import { useFirebaseImage } from 'utils/useFirebaseImage';
 
 export const Carousel = () => {
-  const images = [heroOne, heroTwo, heroThree];
+  const imagePaths = [
+    'images/landing/kitchen-remodel-8.jpg',
+    'images/landing/kitchen-remodel-3.jpg',
+    'images/landing/kitchen-remodel-10.jpg'
+  ];
+
+  // Use the useFirebaseImage hook for each image
+  const imageOne = useFirebaseImage(imagePaths[0]);
+  const imageTwo = useFirebaseImage(imagePaths[1]);
+  const imageThree = useFirebaseImage(imagePaths[2]);
+
+  // Collect all the images with their upload buttons
+  const firebaseImages = [imageOne, imageTwo, imageThree];
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSliding, setIsSliding] = useState(false);
   const intervalRef = useRef(null);
@@ -16,11 +26,11 @@ export const Carousel = () => {
     intervalRef.current = setInterval(() => {
       setIsSliding(true);
       setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % imagePaths.length);
         setIsSliding(false);
       }, 500);
     }, 5000);
-  }, [images.length]);
+  }, [imagePaths.length]);
 
   useEffect(() => {
     startInterval();
@@ -40,17 +50,27 @@ export const Carousel = () => {
           isSliding ? 'transform -translate-x-full' : ''
         }`}
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-        {images.map((image, index) => (
-          <img
+        {firebaseImages.map(({ imageUrl, UploadButton }, index) => (
+          <div
             key={index}
-            src={image}
-            alt={`Slide ${index}`}
-            className="flex-shrink-0 object-cover w-full bg-no-repeat"
-          />
+            className="relative flex-shrink-0 object-cover w-full bg-no-repeat">
+            {imageUrl ? (
+              <img
+                src={imageUrl}
+                alt={`Slide ${index}`}
+                className="object-cover w-full h-full"
+              />
+            ) : (
+              <div className="flex items-center justify-center w-full h-full bg-gray-200">
+                Loading...
+              </div>
+            )}
+            <UploadButton /> {/* Button for uploading a new image */}
+          </div>
         ))}
       </div>
       <div className="absolute flex justify-between w-16 h-5 -translate-x-1/2 lg:w-24 bottom-3 lg:bottom-10 left-1/2">
-        {images.map((_, index) => (
+        {firebaseImages.map((_, index) => (
           <div
             key={index}
             className={cn(
