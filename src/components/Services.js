@@ -2,11 +2,14 @@ import { landingServicesData } from 'data/LandingServices';
 import { Link } from 'react-router-dom';
 import HoverImage from 'utils/HoverImage';
 import { ParallaxSection } from 'components/ParallaxSection';
+import { userAtom } from '../atoms/userAtom';
 import { useAtom } from 'jotai';
 import { galleryAtom } from 'atoms/galleryAtom';
 import { useFirebaseImage } from 'utils/useFirebaseImage';
 
 export const Services = () => {
+  const [user] = useAtom(userAtom);
+
   const {
     imageUrl: serviceImageUrl,
     error,
@@ -43,8 +46,7 @@ export const Services = () => {
             overlayColor="rgba(143, 99, 70, 0.4)"
           />
         )}
-
-        <UploadButton />
+        {user.email && <UploadButton />}
 
         <div className="absolute w-full h-full p-5 text-white -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 md:px-32 top-1/2 left-1/2 shadow-custom">
           <h2 className="w-full py-10 text-4xl text-white border-b border-white border-opacity-25 lg:text-6xl">
