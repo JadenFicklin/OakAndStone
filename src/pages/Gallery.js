@@ -3,8 +3,16 @@ import { Title } from 'components/Title';
 import { galleryData } from 'data/Gallery';
 import { useAtom } from 'jotai';
 import { Link } from 'react-router-dom';
+import { useFirebaseImage } from 'utils/useFirebaseImage';
 
 export const Gallery = () => {
+  const imageOne = useFirebaseImage('images/gallery/custom-cabinets-8.jpg');
+  const imageTwo = useFirebaseImage('images/gallery/kitchen-remodel-3.jpg');
+  const imageThree = useFirebaseImage('images/gallery/bathroom-remodel-12.jpg');
+  const imageFour = useFirebaseImage('images/gallery/custom-woodwork-3.jpg');
+  const imageFive = useFirebaseImage('images/gallery/other-projects-6.jpg');
+  const firebaseImages = [imageOne, imageTwo, imageThree, imageFour, imageFive];
+
   const [, setGallery] = useAtom(galleryAtom);
 
   const scrollToTop = () => {
@@ -14,6 +22,7 @@ export const Gallery = () => {
     });
   };
 
+  console.log(imageOne);
   return (
     <>
       <Title>Gallery</Title>
@@ -28,7 +37,7 @@ export const Gallery = () => {
             to={`/gallery/${item.slug}`}
             className="object-cover bg-center size-64 w-full md:w-[240px] relative hover:scale-105 duration-150 cursor-pointer"
             style={{
-              backgroundImage: `url(${item.image})`
+              backgroundImage: `url(${firebaseImages[index].imageUrl})`
             }}
             onClick={() => {
               setGallery(item.link);
