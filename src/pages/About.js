@@ -1,7 +1,14 @@
 import { Title } from 'components/Title';
 import { aboutHeaderData, aboutPeopleData } from 'data/About';
+import { useFirebaseImage } from 'utils/useFirebaseImage';
+import { userAtom } from '../atoms/userAtom';
+import { useAtom } from 'jotai';
 
 export const About = () => {
+  const { imageUrl: teamImageUrl, UploadButton: UploadTeamImageButton } =
+    useFirebaseImage('images/about/team.jpg');
+  const [user] = useAtom(userAtom);
+
   return (
     <div className="text-brown">
       <Title>About</Title>
@@ -10,29 +17,38 @@ export const About = () => {
         Meet the Craftsmen Behind Oak and Stone: A Legacy of Precision and
         Passion
       </h2>
-      {/* team behind oak and stone */}
+
       <div className="grid w-10/12 mx-auto xl:my-20 xl:grid-cols-2 gap-y-6 ">
-        <img
-          src={aboutHeaderData.image}
-          alt="oak and stone team building their warehouse"
-          className="object-cover my-6 xl:order-2 xl:h-full xl:my-0"
-        />
-        <div className="grid mx-auto h-max gap-y-6 xl:w-10/12 xl:text-xl">
+        <div className="grid mx-auto h-max gap-y-6 xl:w-10/12 xl:text-xl xl:order-1">
           <p>
             {aboutHeaderData.text}
-            <br></br>
-            <br></br>
+            <br />
+            <br />
             {aboutHeaderData.text2}
-            <br></br>
-            <br></br>
+            <br />
+            <br />
             {aboutHeaderData.text3}
           </p>
         </div>
+
+        <div className="relative xl:order-2">
+          {teamImageUrl ? (
+            <img
+              src={teamImageUrl}
+              alt="oak and stone team building their warehouse"
+              className="object-cover my-6 xl:h-full xl:my-0"
+            />
+          ) : (
+            <div className="flex items-center justify-center object-cover my-6 bg-gray-200 xl:h-full xl:my-0">
+              Loading...
+            </div>
+          )}
+          {user.email && <UploadTeamImageButton />}
+        </div>
       </div>
 
-      {/* divider */}
       <div className="w-10/12 mx-auto h-[1px] my-20 bg-brown"></div>
-      {/* members */}
+
       {aboutPeopleData.map((item, index) => (
         <div
           key={index}
@@ -48,8 +64,8 @@ export const About = () => {
             </h2>
             <p>
               {item.text}
-              <br></br>
-              <br></br>
+              <br />
+              <br />
               {item.text2}
             </p>
           </div>
