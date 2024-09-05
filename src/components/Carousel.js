@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { cn } from 'utils/cn';
 import { useFirebaseImage } from 'utils/useFirebaseImage';
+import { userAtom } from '../atoms/userAtom';
+import { useAtom } from 'jotai';
 
 export const Carousel = () => {
   const imagePaths = [
@@ -8,6 +10,7 @@ export const Carousel = () => {
     'images/landing/kitchen-remodel-3.jpg',
     'images/landing/kitchen-remodel-10.jpg'
   ];
+  const [user] = useAtom(userAtom);
 
   // Use the useFirebaseImage hook for each image
   const imageOne = useFirebaseImage(imagePaths[0]);
@@ -65,7 +68,7 @@ export const Carousel = () => {
                 Loading...
               </div>
             )}
-            <UploadButton /> {/* Button for uploading a new image */}
+            {user.email && <UploadButton />}
           </div>
         ))}
       </div>
