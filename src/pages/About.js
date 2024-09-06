@@ -1,13 +1,105 @@
 import { Title } from 'components/Title';
-import { aboutHeaderData, aboutPeopleData } from 'data/About';
 import { useFirebaseImage } from 'utils/useFirebaseImage';
+import {
+  getDatabase,
+  ref,
+  set,
+  remove,
+  push,
+  onValue
+} from 'firebase/database';
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL
+} from 'firebase/storage';
 import { userAtom } from '../atoms/userAtom';
 import { useAtom } from 'jotai';
+import { useState, useEffect } from 'react';
 
 export const About = () => {
   const { imageUrl: teamImageUrl, UploadButton: UploadTeamImageButton } =
     useFirebaseImage('images/about/team.jpg');
   const [user] = useAtom(userAtom);
+  const [aboutPeople, setAboutPeople] = useState([]);
+  const [aboutHeaderData, setAboutHeaderData] = useState({});
+  const [newPerson, setNewPerson] = useState({
+    name: '',
+    text: '',
+    image: null
+  });
+
+  const db = getDatabase();
+  const storage = getStorage();
+
+  // Fetch about header data and people data from Firebase
+  useEffect(() => {
+    const fetchAboutData = () => {
+      const aboutHeaderRef = ref(db, 'aboutPageData/aboutHeaderData');
+      const aboutPeopleRef = ref(db, 'aboutPageData/aboutPeopleData');
+
+      // Listen to changes in aboutHeaderData
+      onValue(aboutHeaderRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          setAboutHeaderData(data);
+        }
+      });
+
+      // Listen to changes in aboutPeopleData
+      onValue(aboutPeopleRef, (snapshot) => {
+        const peopleData = snapshot.val();
+        if (peopleData) {
+          const peopleArray = Object.keys(peopleData).map((key) => ({
+            key,
+            ...peopleData[key]
+          }));
+          setAboutPeople(peopleArray);
+        }
+      });
+    };
+
+    fetchAboutData();
+  }, [db]);
+
+  // Handle adding a new person
+  const handleAddPerson = async () => {
+    if (!newPerson.name || !newPerson.text || !newPerson.image)
+      return alert('Please fill in all fields.');
+
+    // Upload image to Firebase Storage
+    const imageRef = storageRef(
+      storage,
+      `images/aboutPeople/${newPerson.image.name}`
+    );
+    await uploadBytes(imageRef, newPerson.image);
+    const imageUrl = await getDownloadURL(imageRef);
+
+    // Add new person data to Firebase Database
+    const newPersonRef = push(ref(db, 'aboutPageData/aboutPeopleData'));
+    await set(newPersonRef, {
+      name: newPerson.name,
+      text: newPerson.text,
+      image: imageUrl
+    });
+
+    // Clear input fields
+    setNewPerson({ name: '', text: '', image: null });
+  };
+
+  // Handle deleting a person
+  const handleDeletePerson = async (personKey) => {
+    const personRef = ref(db, `aboutPageData/aboutPeopleData/${personKey}`);
+    await remove(personRef);
+  };
+
+  // Handle image selection
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setNewPerson({ ...newPerson, image: e.target.files[0] });
+    }
+  };
 
   return (
     <div className="text-brown">
@@ -49,9 +141,10 @@ export const About = () => {
 
       <div className="w-10/12 mx-auto h-[1px] my-20 bg-brown"></div>
 
-      {aboutPeopleData.map((item, index) => (
+      {/* Display existing people sections */}
+      {aboutPeople.map((item, index) => (
         <div
-          key={index}
+          key={item.key}
           className="grid w-10/12 grid-cols-1 mx-auto my-6 mb-20 xl:text-xl xl:grid-cols-2 gap-y-6 xl:gap-x-20 h-max">
           <img
             src={item.image}
@@ -62,15 +155,54 @@ export const About = () => {
             <h2 className="text-2xl font-medium text-left xl:text-2xl">
               {item.name}
             </h2>
-            <p>
-              {item.text}
-              <br />
-              <br />
-              {item.text2}
-            </p>
+            <p>{item.text}</p>
+
+            {/* Delete button, only visible if the user is logged in */}
+            {user.email && (
+              <button
+                onClick={() => handleDeletePerson(item.key)}
+                className="text-red-500 hover:text-red-700">
+                Delete
+              </button>
+            )}
           </div>
         </div>
       ))}
+
+      {/* If the user is logged in, show the add new person form */}
+      {user.email && (
+        <div className="w-10/12 mx-auto">
+          <h3 className="mb-4 text-2xl font-medium">Add New Person</h3>
+          <input
+            type="text"
+            placeholder="Name"
+            value={newPerson.name}
+            onChange={(e) =>
+              setNewPerson({ ...newPerson, name: e.target.value })
+            }
+            className="w-full p-2 mb-4 border border-gray-300"
+          />
+          <textarea
+            placeholder="Text"
+            value={newPerson.text}
+            onChange={(e) =>
+              setNewPerson({ ...newPerson, text: e.target.value })
+            }
+            className="w-full p-2 mb-4 border border-gray-300"
+          />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="mb-4"
+          />
+          <button
+            onClick={handleAddPerson}
+            className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-700">
+            Add Person
+          </button>
+        </div>
+      )}
     </div>
   );
 };
