@@ -155,7 +155,15 @@ export const About = () => {
             <h2 className="text-2xl font-medium text-left xl:text-2xl">
               {item.name}
             </h2>
-            <p>{item.text}</p>
+            {/* Render text with line breaks */}
+            <p>
+              {item.text.split('\n').map((line, i) => (
+                <span key={i}>
+                  {line}
+                  <br />
+                </span>
+              ))}
+            </p>
 
             {/* Delete button, only visible if the user is logged in */}
             {user.email && (
