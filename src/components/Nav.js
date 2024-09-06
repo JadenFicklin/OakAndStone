@@ -59,7 +59,7 @@ export const Nav = ({ full }) => {
           </div>
         </div>
         {user && user.email && (
-          <div className="absolute p-2 py-1 mt-2 text-xs text-white rounded-md bg-brown top-2 right-5">
+          <div className="absolute top-0 p-2 py-0 text-xs text-white rounded-md bg-brown right-5">
             Logged in as {user.email}
           </div>
         )}
