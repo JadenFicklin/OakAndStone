@@ -1,5 +1,6 @@
 import { Title } from 'components/Title';
 import Swal from 'sweetalert2';
+import { EditableText } from 'utils/EditableText';
 
 export const Careers = () => {
   const EMAIL_ACCESS_KEY = process.env.REACT_APP_EMAIL_ACCESS_KEY;
@@ -39,14 +40,20 @@ export const Careers = () => {
     <>
       <Title>Careers</Title>
       <h2 className="w-10/12 py-10 mx-auto text-3xl text-center md:text-6xl text-brown playfair">
-        Join Our Team: Build a Future with Oak and Stone
+        <EditableText
+          firebasePath="titles/careers"
+          className="text-3xl text-center md:text-6xl playfair"
+        />
       </h2>
       <div className="grid w-10/12 md:w-9/12 grid-cols-1 mx-auto md:grid-cols-[70%_30%]">
         <form
           onSubmit={onSubmit}
           className="text-gray-600 max-w-[900px] md:w-11/12 md:pr-10 md:h-max md:my-10 md:mb-20 md:border-r ">
           <h2 className="my-10 text-lg text-center">
-            For all job inquiries: fill out the form below or call:{' '}
+            <EditableText
+              firebasePath="other/careersAndContact/careersSub"
+              className="text-lg"
+            />
             <a href="tel:8014306451">(801) 430-6451</a>
           </h2>
           <div className="my-2">
@@ -91,24 +98,46 @@ export const Careers = () => {
           </button>
         </form>
         <div className="mb-20 text-gray-600 md:my-20 h-max">
-          <h2 className="my-2 text-base font-medium">WHERE WE WORK</h2>
+          <h2 className="my-2 text-base font-medium">
+            <EditableText
+              firebasePath="other/careersAndContact/locationTitle"
+              className="text-base font-medium"
+            />
+          </h2>
           <p className="my-2 mb-10 text-base">
-            We work in the greater Wasatch Front, from Logan to Lehi
+            <EditableText
+              firebasePath="other/careersAndContact/locationSubTitle"
+              className="text-base"
+            />
           </p>
-          <h2 className="text-base font-medium">Contact</h2>
+          <h2 className="text-base font-medium">
+            <EditableText
+              firebasePath="other/careersAndContact/contactTitle"
+              className="text-base font-medium"
+            />
+          </h2>
           <a
             href="mailto:oakandstonecabinets@gmail.com"
             className="my-2 text-blue-600 underline">
-            oakandstonecabinets@gmail.com
+            <EditableText
+              firebasePath="other/careersAndContact/email"
+              className="text-blue-600 underline"
+            />
           </a>
           <p>
             <a href="tel:8014306451" className="my-2">
-              (801) 430-6451
+              <EditableText
+                firebasePath="other/careersAndContact/number"
+                className="text-base"
+              />
             </a>
           </p>
           <p>
             <a href="tel:3852389152" className="my-2">
-              (385) 238-9152
+              <EditableText
+                firebasePath="other/careersAndContact/secondNumber"
+                className="text-base"
+              />
             </a>
           </p>
         </div>
