@@ -76,9 +76,8 @@ export const EditableText = ({
         </div>
       ) : (
         <h2
-          className={` ${className}`}
-          onClick={handleTextClick}
-          style={{ cursor: user?.email ? 'pointer' : 'default' }}>
+          className={` ${className} ${user?.email ? 'cursor-pointer' : ''}`} // Add cursor pointer here
+          onClick={handleTextClick}>
           {text || 'Loading...'}
         </h2>
       )}

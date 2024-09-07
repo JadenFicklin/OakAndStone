@@ -5,7 +5,7 @@ import { useFirebaseImage } from 'utils/useFirebaseImage';
 import { userAtom } from '../atoms/userAtom';
 import { useAtom } from 'jotai';
 import { getDatabase, ref, get } from 'firebase/database';
-import { EditableText } from 'utils/EditableText'; // Make sure the path is correct
+import { EditableText } from 'utils/EditableText';
 
 export const Faqs = () => {
   const [currentFaq, setCurrentFaq] = useState(0);
@@ -94,7 +94,7 @@ export const Faqs = () => {
                   <Link
                     to={item.link}
                     onClick={scrollToTop}
-                    className="absolute ml-1 text-xs text-blue-400 -bottom-2">
+                    className="absolute ml-1 text-xs text-blue-400 cursor-pointer -bottom-2">
                     <EditableText
                       firebasePath={`homePageData/homeFaq/${index}/button`}
                       className="text-xs text-blue-400"
