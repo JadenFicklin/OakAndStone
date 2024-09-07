@@ -17,13 +17,14 @@ import {
 import { userAtom } from '../atoms/userAtom';
 import { useAtom } from 'jotai';
 import { useState, useEffect } from 'react';
+import { EditableText } from 'utils/EditableText';
 
 export const About = () => {
   const { imageUrl: teamImageUrl, UploadButton: UploadTeamImageButton } =
     useFirebaseImage('images/about/team.jpg');
   const [user] = useAtom(userAtom);
   const [aboutPeople, setAboutPeople] = useState([]);
-  const [aboutHeaderData, setAboutHeaderData] = useState({});
+  const [, setAboutHeaderData] = useState({});
   const [newPerson, setNewPerson] = useState({
     name: '',
     text: '',
@@ -106,20 +107,29 @@ export const About = () => {
       <Title>About</Title>
 
       <h2 className="w-10/12 py-10 mx-auto text-3xl text-center md:text-6xl text-brown playfair">
-        Meet the Craftsmen Behind Oak and Stone: A Legacy of Precision and
-        Passion
+        <EditableText
+          firebasePath="aboutPageData/aboutHeaderData/title"
+          className="text-3xl text-center md:text-6xl playfair"
+        />
       </h2>
 
       <div className="grid w-10/12 mx-auto xl:my-20 xl:grid-cols-2 gap-y-6 ">
         <div className="grid mx-auto h-max gap-y-6 xl:w-10/12 xl:text-xl xl:order-1">
           <p>
-            {aboutHeaderData.text}
+            <EditableText
+              firebasePath="aboutPageData/aboutHeaderData/text"
+              className="text-base xl:text-xl"
+            />
             <br />
+            <EditableText
+              firebasePath="aboutPageData/aboutHeaderData/text2"
+              className="text-base xl:text-xl"
+            />
             <br />
-            {aboutHeaderData.text2}
-            <br />
-            <br />
-            {aboutHeaderData.text3}
+            <EditableText
+              firebasePath="aboutPageData/aboutHeaderData/text3"
+              className="text-base xl:text-xl"
+            />
           </p>
         </div>
 
