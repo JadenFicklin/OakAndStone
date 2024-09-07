@@ -3,10 +3,10 @@ import { Title } from 'components/Title';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
 import { userAtom } from '../atoms/userAtom';
 import { useAtom } from 'jotai';
 import { ImageModal } from 'utils/ImageModal'; // Import the ImageModal component
+import { EditableText } from 'utils/EditableText'; // Import EditableText
 
 import {
   getStorage,
@@ -21,7 +21,7 @@ import { getDatabase, ref as dbRef, onValue } from 'firebase/database';
 export const GallerySub = () => {
   const { subgallery } = useParams();
   const [imageCollection, setImageCollection] = useState([]);
-  const [subtext, setSubtext] = useState(''); // Store subtext from Firebase
+  const [, setSubtext] = useState(''); // Store subtext from Firebase
   const [, setIsLoading] = useState(true);
   const [user] = useAtom(userAtom);
   const [modalIndex, setModalIndex] = useState(null); // State to track the currently opened image index
@@ -144,8 +144,11 @@ export const GallerySub = () => {
           <h3 className="text-4xl md:text-6xl xl:text-8xl">
             {formatTitle(subgallery)}
           </h3>
-          {/* Display subtext from Firebase */}
-          <p className="mt-4 text-lg md:text-xl">{subtext}</p>
+          {/* Display editable subtext */}
+          <EditableText
+            firebasePath={`gallerySubPageData/${subgallery}/text`}
+            className="mt-4 text-lg md:text-xl"
+          />
         </ParallaxSection>
         <div className="absolute w-full h-full p-5 px-32 text-white -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 top-1/2 left-1/2 shadow-custom"></div>
       </div>
