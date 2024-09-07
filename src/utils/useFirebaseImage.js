@@ -25,7 +25,6 @@ export const useFirebaseImage = (imagePath) => {
   const uploadImage = async (file) => {
     const storage = getStorage();
     const imageRef = ref(storage, imagePath);
-    console.log('Uploading image to:', imagePath);
     try {
       setIsUploading(true);
       await uploadBytes(imageRef, file);

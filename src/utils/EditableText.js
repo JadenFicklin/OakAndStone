@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getDatabase, ref, get, set } from 'firebase/database';
+import { userAtom } from '../atoms/userAtom';
+import { useAtom } from 'jotai';
 
 export const EditableText = ({
   firebasePath,
@@ -10,6 +12,7 @@ export const EditableText = ({
   const [text, setText] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [newText, setNewText] = useState('');
+  const [user] = useAtom(userAtom);
 
   useEffect(() => {
     const fetchText = async () => {
@@ -28,7 +31,11 @@ export const EditableText = ({
   }, [firebasePath]);
 
   const handleTextClick = () => {
-    setIsEditing(true);
+    if (user?.email) {
+      setIsEditing(true);
+    } else {
+      console.log('User is not logged in');
+    }
   };
 
   const handleInputChange = (e) => {
@@ -71,7 +78,7 @@ export const EditableText = ({
         <h2
           className={` ${className}`}
           onClick={handleTextClick}
-          style={{ cursor: 'pointer' }}>
+          style={{ cursor: user?.email ? 'pointer' : 'default' }}>
           {text || 'Loading...'}
         </h2>
       )}

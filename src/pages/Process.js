@@ -33,8 +33,6 @@ export const Process = () => {
 
         setImageUrls(urls);
         setImageRefs(res.items);
-
-        console.log('Image URLs:', urls);
       } catch (error) {
         console.error('Error fetching image URLs:', error);
       }
@@ -53,7 +51,6 @@ export const Process = () => {
         updatedUrls[index] = newUrl;
         return updatedUrls;
       });
-      console.log('Image updated:', newUrl);
     } catch (error) {
       console.error('Error uploading image:', error);
     }
