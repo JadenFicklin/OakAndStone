@@ -13,12 +13,14 @@ import {
 } from 'firebase/storage';
 import { userAtom } from '../atoms/userAtom';
 import { useAtom } from 'jotai';
+import { ImageModal } from 'utils/ImageModal'; // Import the ImageModal component
 
 export const GallerySub = () => {
   const { subgallery } = useParams();
   const [imageCollection, setImageCollection] = useState([]);
   const [, setIsLoading] = useState(true);
   const [user] = useAtom(userAtom);
+  const [modalIndex, setModalIndex] = useState(null); // State to track the currently opened image index
 
   const storage = getStorage();
   const folderPath = `images/${subgallery}/`;
@@ -73,6 +75,17 @@ export const GallerySub = () => {
     }
     setImageCollection((prev) => [...prev, ...uploadedImages]);
   };
+
+  // Handle opening the image modal
+  const openModal = (index) => {
+    setModalIndex(index);
+  };
+
+  // Handle closing the image modal
+  const closeModal = () => {
+    setModalIndex(null);
+  };
+
   return (
     <>
       <Title>
@@ -105,7 +118,8 @@ export const GallerySub = () => {
             <img
               src={image.url}
               alt={index}
-              className="w-full object-cover max-h-[800px] max-w-[1200px] mx-auto"
+              className="w-full object-cover max-h-[800px] max-w-[1200px] mx-auto cursor-pointer"
+              onClick={() => openModal(index)} // Open modal on click
             />
             {user.email && (
               <button
@@ -137,6 +151,13 @@ export const GallerySub = () => {
           </div>
         )}
       </div>
+      {modalIndex !== null && (
+        <ImageModal
+          images={imageCollection}
+          currentIndex={modalIndex}
+          onClose={closeModal}
+        />
+      )}
     </>
   );
 };
