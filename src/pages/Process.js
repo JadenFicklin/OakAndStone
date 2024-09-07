@@ -23,13 +23,14 @@ import { useAtom } from 'jotai';
 
 export const Process = () => {
   const [, setImageUrls] = useState([]);
-  const [imageRefs, setImageRefs] = useState([]);
+  const [, setImageRefs] = useState([]);
   const [processSteps, setProcessSteps] = useState([]);
   const [newProcessStep, setNewProcessStep] = useState({
     title: '',
     text: '',
     image: null
   });
+  const [loading, setLoading] = useState(false); // Track loading state
   const [user] = useAtom(userAtom);
 
   const db = getDatabase();
@@ -66,18 +67,31 @@ export const Process = () => {
     fetchProcessData();
   }, [db, storage]);
 
-  const handleImageUpload = async (file, index) => {
-    const imageRef = imageRefs[index];
+  const handleImageUpload = async (file, key) => {
+    setLoading(true); // Set loading to true when upload starts
     try {
+      // Upload new image to Firebase Storage
+      const imageRef = ref(storage, `images/process/${file.name}`);
       await uploadBytes(imageRef, file);
       const newUrl = await getDownloadURL(imageRef);
+
+      // Update the imageUrl in Firebase Realtime Database
+      const processStepRef = dbRef(db, `processPageData/${key}/imageUrl`);
+      await set(processStepRef, newUrl);
+
+      // Update the local state with the new image URL
       setImageUrls((prev) => {
         const updatedUrls = [...prev];
-        updatedUrls[index] = newUrl;
+        const stepIndex = processSteps.findIndex(
+          ([stepKey]) => stepKey === key
+        );
+        updatedUrls[stepIndex] = newUrl;
         return updatedUrls;
       });
     } catch (error) {
-      console.error('Error uploading image:', error);
+      console.error('Error uploading and updating image:', error);
+    } finally {
+      setLoading(false); // Set loading to false when upload completes
     }
   };
 
@@ -85,6 +99,7 @@ export const Process = () => {
     if (!newProcessStep.title || !newProcessStep.text || !newProcessStep.image)
       return alert('Please fill in all fields.');
 
+    setLoading(true); // Set loading to true when adding new step
     try {
       // Upload image to Firebase Storage
       const imageRef = ref(
@@ -106,6 +121,8 @@ export const Process = () => {
       setNewProcessStep({ title: '', text: '', image: null });
     } catch (error) {
       console.error('Error adding new process step:', error);
+    } finally {
+      setLoading(false); // Set loading to false when process completes
     }
   };
 
@@ -163,7 +180,7 @@ export const Process = () => {
             {user.email && (
               <div className="relative flex justify-end -top-12 right-2">
                 <label className="p-2 bg-white rounded shadow cursor-pointer">
-                  Upload Image
+                  {loading ? 'Uploading...' : 'Upload Image'}
                   <input
                     type="file"
                     accept="image/*"
@@ -171,9 +188,10 @@ export const Process = () => {
                     onChange={(e) => {
                       const file = e.target.files[0];
                       if (file) {
-                        handleImageUpload(file, index);
+                        handleImageUpload(file, key);
                       }
                     }}
+                    disabled={loading} // Disable input when loading
                   />
                 </label>
               </div>
@@ -213,6 +231,7 @@ export const Process = () => {
               setNewProcessStep({ ...newProcessStep, title: e.target.value })
             }
             className="w-full p-2 mb-4 border border-gray-300"
+            disabled={loading} // Disable input when loading
           />
           <textarea
             placeholder="Description"
@@ -221,6 +240,7 @@ export const Process = () => {
               setNewProcessStep({ ...newProcessStep, text: e.target.value })
             }
             className="w-full p-2 mb-4 border border-gray-300"
+            disabled={loading} // Disable input when loading
           />
           <input
             type="file"
@@ -232,11 +252,14 @@ export const Process = () => {
               }
             }}
             className="mb-4"
+            disabled={loading} // Disable input when loading
           />
           <button
             onClick={handleAddNewProcessStep}
-            className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-700">
-            Add New Step
+            className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-700"
+            disabled={loading} // Disable button when loading
+          >
+            {loading ? 'Adding...' : 'Add New Step'}
           </button>
         </div>
       )}
