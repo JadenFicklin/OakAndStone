@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { getStorage, ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { userAtom } from 'atoms/userAtom';
 import { useAtom } from 'jotai';
+import { EditableText } from 'utils/EditableText';
 
 export const Gallery = () => {
   // Initialize state to store image URLs
@@ -73,9 +74,13 @@ export const Gallery = () => {
   return (
     <>
       <Title>Gallery</Title>
+
+      {/* Dynamic Header */}
       <h2 className="w-10/12 py-10 mx-auto text-3xl text-center md:text-6xl text-brown playfair">
-        Crafting Excellence: Explore Our Portfolio of Custom Woodwork and
-        Designs
+        <EditableText
+          firebasePath="titles/gallery" // Replace the static text with the dynamic one from Firebase
+          className="text-3xl text-center md:text-6xl text-brown playfair"
+        />
       </h2>
 
       <div className="flex flex-wrap items-start justify-center w-9/12 gap-10 pb-10 mx-auto my-10 text-white xl:py-10 xl:pb-20">

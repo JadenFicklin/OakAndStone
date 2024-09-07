@@ -6,6 +6,7 @@ import { userAtom } from '../atoms/userAtom';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
 import Swal from 'sweetalert2';
+import { EditableText } from 'utils/EditableText';
 
 export const Footer = () => {
   const [user, setUser] = useAtom(userAtom);
@@ -41,12 +42,23 @@ export const Footer = () => {
         <Link to="/" onClick={handleLogoClick}>
           <img src={logo} alt="oak and stone logo" className="h-12 mx-auto" />
         </Link>
+
+        {/* Dynamic Phone Number */}
         <a href="tel:8014306451" className="my-6 text-xs mb-14">
-          (801) 430-6451
+          <EditableText
+            firebasePath="other/footer/number"
+            className="text-xs"
+          />
         </a>
+
+        {/* Dynamic Copyright Text */}
         <p className="py-6 text-xs font-semibold">
-          Copyright 2024 Oak and Stone Remodel
+          <EditableText
+            firebasePath="other/footer/copyright"
+            className="text-xs font-semibold"
+          />
         </p>
+
         {user && user.email ? (
           <button
             onClick={handleLogout}
