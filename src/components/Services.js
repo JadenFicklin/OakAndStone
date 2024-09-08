@@ -73,7 +73,7 @@ export const Services = () => {
             {landingServicesData.map((item) => (
               <Link
                 onClick={() => serviceClicked(item)}
-                to={item.link}
+                to={`/gallery/${item.slug}`}
                 key={item.name}>
                 <div className="border-b-[1px] py-7 pl-3 hover:bg-brown hover:bg-opacity-5">
                   {item.name}

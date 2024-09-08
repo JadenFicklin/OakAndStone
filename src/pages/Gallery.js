@@ -101,7 +101,7 @@ export const Gallery = () => {
                 <img
                   src={firebaseImages[index]}
                   alt={item.title}
-                  className="object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105"
+                  className="object-cover w-full h-full transition-transform duration-300 ease-in-out max-h-60 hover:scale-105"
                 />
               ) : (
                 <div className="flex items-center justify-center w-full h-full bg-gray-200">
