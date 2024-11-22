@@ -93,26 +93,43 @@ export const ImageDisplay = () => {
       {categories.map((category) => (
         <div
           key={category.path}
-          className="p-4 mb-8 border-2 border-gray-300 rounded-md">
-          <h3 className="mb-4 text-3xl font-bold">{category.displayName}</h3>
-          <div className="grid grid-cols-3 gap-4">
-            {imagesByCategory[category.path]?.map((image, index) => (
-              <div key={index} className="relative">
-                <img
-                  src={image.url}
-                  alt={`${category.displayName} ${index + 1}`}
-                  className="w-full h-auto rounded-md"
-                />
-                {user?.email && (
-                  <button
-                    onClick={() => removeImage(category.path, image.name)}
-                    className="absolute text-white bg-red-500 rounded-full size-8 top-2 right-2">
-                    ✕
-                  </button>
-                )}
-              </div>
-            ))}
+          className="grid overflow-hidden h-[700px] columns-2 grid-cols-[30%_70%] relative">
+          {/* Top horizontal line */}
+          <div className="w-full h-[1px] bg-blue-500 absolute top-0 left-0"></div>
+
+          {/* Left text */}
+          <div className="relative">
+            <p className="mb-4 text-sm">PROJECT NAME</p>
+            <h3 className="mb-4 text-2xl">{category.displayName}</h3>
+            {/* Right vertical line */}
+            <div className="w-[1px] h-full bg-blue-500 absolute top-0 right-0"></div>
           </div>
+
+          {/* Images */}
+          <div className="relative">
+            <div className="absolute top-1/2 left-6 -translate-y-1/2 flex h-[90%] space-x-6 ">
+              {imagesByCategory[category.path]?.map((image, index) => (
+                <div key={index} className="relative flex-shrink-0">
+                  <img
+                    src={image.url}
+                    alt={`${category.displayName} ${index + 1}`}
+                    className="object-contain w-auto h-full"
+                  />
+
+                  {/* Delete button */}
+                  {user?.email && (
+                    <button
+                      onClick={() => removeImage(category.path, image.name)}
+                      className="absolute text-white bg-red-500 rounded-full size-8 top-2 right-2">
+                      ✕
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Add new images */}
           {user?.email && (
             <div className="flex justify-center items-center w-full h-[200px] mt-4 border-2 border-dashed border-gray-400">
               <label className="cursor-pointer">
