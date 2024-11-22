@@ -40,7 +40,7 @@ export const useFirebaseImage = (imagePath) => {
   const UploadButton = () => (
     <div className="absolute top-0 right-0 z-40 m-4">
       <label className="p-2 bg-white rounded shadow cursor-pointer">
-        {isUploading ? 'Uploading...' : 'Upload Image'}
+        {isUploading ? 'Up ' : 'Upload Image'}
         <input
           type="file"
           accept="image/*"

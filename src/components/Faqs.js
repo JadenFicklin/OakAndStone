@@ -49,7 +49,7 @@ export const Faqs = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading FAQs...</div>;
+    return <div></div>;
   }
 
   return (
@@ -114,9 +114,7 @@ export const Faqs = () => {
               alt={faqData[currentFaq]?.imageAlt || 'FAQ Image'}
             />
           ) : (
-            <div className="w-11/12 mx-auto flex items-center justify-center bg-gray-200 max-h-[400px] max-w-[800px] my-10 object-cover">
-              Loading...
-            </div>
+            <div className="w-11/12 mx-auto flex items-center justify-center bg-gray-200 max-h-[400px] max-w-[800px] my-10 object-cover"></div>
           )}
 
           {user.email && <UploadButton />}

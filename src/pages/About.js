@@ -141,9 +141,7 @@ export const About = () => {
               className="object-cover my-6 xl:h-full xl:my-0"
             />
           ) : (
-            <div className="flex items-center justify-center object-cover my-6 bg-gray-200 xl:h-full xl:my-0">
-              Loading...
-            </div>
+            <div className="flex items-center justify-center object-cover my-6 bg-gray-200 xl:h-full xl:my-0"></div>
           )}
           {user.email && <UploadTeamImageButton />}
         </div>

@@ -1,24 +1,15 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { cn } from 'utils/cn';
-import { useFirebaseImage } from 'utils/useFirebaseImage';
-import { userAtom } from '../atoms/userAtom';
-import { useAtom } from 'jotai';
+import kitchenRemodelEight from '../assets/images/landing/kitchen-remodel-8.jpg';
+import kitchenRemodelThree from '../assets/images/landing/kitchen-remodel-3.jpg';
+import kitchenRemodelTen from '../assets/images/landing/kitchen-remodel-10.jpg';
 
 export const Carousel = () => {
-  const imagePaths = [
-    'images/landing/kitchen-remodel-8.jpg',
-    'images/landing/kitchen-remodel-3.jpg',
-    'images/landing/kitchen-remodel-10.jpg'
+  const localImages = [
+    kitchenRemodelEight,
+    kitchenRemodelThree,
+    kitchenRemodelTen
   ];
-  const [user] = useAtom(userAtom);
-
-  // Use the useFirebaseImage hook for each image
-  const imageOne = useFirebaseImage(imagePaths[0]);
-  const imageTwo = useFirebaseImage(imagePaths[1]);
-  const imageThree = useFirebaseImage(imagePaths[2]);
-
-  // Collect all the images with their upload buttons
-  const firebaseImages = [imageOne, imageTwo, imageThree];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSliding, setIsSliding] = useState(false);
@@ -29,11 +20,11 @@ export const Carousel = () => {
     intervalRef.current = setInterval(() => {
       setIsSliding(true);
       setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % imagePaths.length);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % localImages.length);
         setIsSliding(false);
       }, 500);
     }, 5000);
-  }, [imagePaths.length]);
+  }, [localImages.length]);
 
   useEffect(() => {
     startInterval();
@@ -53,27 +44,20 @@ export const Carousel = () => {
           isSliding ? 'transform -translate-x-full' : ''
         }`}
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-        {firebaseImages.map(({ imageUrl, UploadButton }, index) => (
+        {localImages.map((image, index) => (
           <div
             key={index}
             className="relative flex-shrink-0 object-cover w-full bg-no-repeat">
-            {imageUrl ? (
-              <img
-                src={imageUrl}
-                alt={`Slide ${index}`}
-                className="object-cover w-full h-full"
-              />
-            ) : (
-              <div className="flex items-center justify-center w-full h-full bg-gray-200">
-                Loading...
-              </div>
-            )}
-            {user.email && <UploadButton />}
+            <img
+              src={image}
+              alt={`Slide ${index}`}
+              className="object-cover w-full h-full"
+            />
           </div>
         ))}
       </div>
       <div className="absolute flex justify-between w-16 h-5 -translate-x-1/2 lg:w-24 bottom-3 lg:bottom-10 left-1/2">
-        {firebaseImages.map((_, index) => (
+        {localImages.map((_, index) => (
           <div
             key={index}
             className={cn(

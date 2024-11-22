@@ -77,7 +77,7 @@ export const SingleTestimonial = () => {
   };
 
   if (loading) {
-    return <div>Loading testimonials...</div>;
+    return <div></div>;
   }
 
   return (

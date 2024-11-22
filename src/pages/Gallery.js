@@ -104,9 +104,7 @@ export const Gallery = () => {
                   className="object-cover w-full h-full transition-transform duration-300 ease-in-out max-h-60 hover:scale-105"
                 />
               ) : (
-                <div className="flex items-center justify-center w-full h-full bg-gray-200">
-                  Loading...
-                </div>
+                <div className="flex items-center justify-center w-full h-full bg-gray-200"></div>
               )}
               {/* Image title overlay */}
               <div className="absolute left-0 w-10/12 p-2 text-lg text-white duration-300 bg-black bottom-5 bg-opacity-60 group-hover:w-full h-max">

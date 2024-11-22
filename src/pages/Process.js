@@ -180,7 +180,7 @@ export const Process = () => {
             {user.email && (
               <div className="relative flex justify-end -top-12 right-2">
                 <label className="p-2 bg-white rounded shadow cursor-pointer">
-                  {loading ? 'Uploading...' : 'Upload Image'}
+                  {loading ? 'Up ' : 'Upload Image'}
                   <input
                     type="file"
                     accept="image/*"
