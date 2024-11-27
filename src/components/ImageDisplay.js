@@ -144,12 +144,15 @@ export const ImageDisplay = () => {
 
   return (
     <div>
-      <div className="relative py-16 mt-24 text-6xl p-7 text-brown">
+      <div className="relative z-40 py-16 mt-24 text-6xl bg-white p-7 text-brown">
         <div
           className={cn(
             'h-[1px] absolute left-1/2 -translate-x-1/2  z-20 bg-gray-500 top-0  w-full'
           )}></div>
         Selected <br /> Works
+      </div>
+      <div className="hidden xl:block sticky z-30 w-full  pl-7 -mt-6  text-white bg-brown top-[136px]">
+        Selected Works
       </div>
 
       {categories.map((category) => (
