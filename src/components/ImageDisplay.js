@@ -147,7 +147,7 @@ export const ImageDisplay = () => {
       <div className="relative py-16 mt-24 text-6xl p-7 text-brown">
         <div
           className={cn(
-            'h-[1px] absolute left-1/2 -translate-x-1/2 bg-black bg-opacity-50 top-0  w-full'
+            'h-[1px] absolute left-1/2 -translate-x-1/2  z-20 bg-gray-500 top-0  w-full'
           )}></div>
         Selected <br /> Works
       </div>
@@ -160,7 +160,7 @@ export const ImageDisplay = () => {
           className="grid overflow-hidden h-[700px] columns-2 grid-cols-[30%_70%] relative">
           <div
             className={cn(
-              'h-[1px] absolute left-1/2 -translate-x-1/2 bg-black bg-opacity-50 top-0 duration-[3000ms]',
+              'h-[1px] absolute left-1/2 -translate-x-1/2  z-20 bg-gray-500 top-0 duration-[3000ms]',
               visibilityState[category.path] ? 'w-full' : 'w-0'
             )}></div>
           <div
@@ -205,14 +205,15 @@ export const ImageDisplay = () => {
             </div>
             <div
               className={cn(
-                'w-[1px] bg-black bg-opacity-50 absolute top-0 right-0 duration-[3000ms]',
+                'w-[1px]  z-20 bg-gray-500 absolute top-0 right-0 duration-[3000ms]',
                 visibilityState[category.path] ? 'h-full' : 'h-0'
               )}></div>
           </div>
 
           <div className="relative overflow-hidden">
+            <div className="absolute top-[0px] z-10 w-full bg-white h-9"></div>
             <div
-              className="absolute top-1/2 left-6 -translate-y-1/2 flex h-[90%] space-x-6"
+              className="absolute top-1/2 left-6 -translate-y-1/2 flex h-[90%] space-x-6 "
               style={{
                 transform: `translateX(-${
                   currentIndexes[category.path] * 624
@@ -223,8 +224,8 @@ export const ImageDisplay = () => {
                 <div
                   key={index}
                   className={cn(
-                    'relative flex-shrink-0 w-[600px] duration-[1000ms]',
-                    visibilityState[category.path] ? 'h-full' : 'h-0'
+                    'relative flex-shrink-0 w-[600px] duration-[1500ms] ease-in-out',
+                    visibilityState[category.path] ? 'top-0' : '-top-[100%]'
                   )}
                   style={{
                     transitionDelay: `${index * 0.5}s`
