@@ -5,8 +5,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { userAtom } from '../atoms/userAtom';
 import { useAtom } from 'jotai';
-import { ImageModal } from 'utils/ImageModal'; // Import the ImageModal component
-import { EditableText } from 'utils/EditableText'; // Import EditableText
+import { ImageModal } from 'utils/ImageModal';
+import { EditableText } from 'utils/EditableText';
 
 import {
   getStorage,
@@ -21,10 +21,10 @@ import { getDatabase, ref as dbRef, onValue } from 'firebase/database';
 export const GallerySub = () => {
   const { subgallery } = useParams();
   const [imageCollection, setImageCollection] = useState([]);
-  const [, setSubtext] = useState(''); // Store subtext from Firebase
+  const [, setSubtext] = useState('');
   const [, setIsLoading] = useState(true);
   const [user] = useAtom(userAtom);
-  const [modalIndex, setModalIndex] = useState(null); // State to track the currently opened image index
+  const [modalIndex, setModalIndex] = useState(null);
 
   const storage = getStorage();
   const folderPath = `images/${subgallery}/`;

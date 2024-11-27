@@ -14,6 +14,7 @@ import { cn } from 'utils/cn';
 export const ImageDisplay = () => {
   const [imagesByCategory, setImagesByCategory] = useState({});
   const [visibilityState, setVisibilityState] = useState({});
+  const [currentIndexes, setCurrentIndexes] = useState({});
   const categoryRefs = useRef({});
   const [user] = useAtom(userAtom);
   const storage = getStorage();
@@ -47,6 +48,13 @@ export const ImageDisplay = () => {
           categoryImages[category.path] = urls;
         }
         setImagesByCategory(categoryImages);
+
+        // Initialize currentIndexes with the first image index for each category
+        const initialIndexes = {};
+        Object.keys(categoryImages).forEach((key) => {
+          initialIndexes[key] = 0;
+        });
+        setCurrentIndexes(initialIndexes);
       } catch (error) {
         console.error('Error fetching images:', error);
       }
@@ -68,10 +76,10 @@ export const ImageDisplay = () => {
           }
         });
       },
-      { threshold: 0.1 } // Adjust threshold as needed
+      { threshold: 0.1 }
     );
 
-    const currentRefs = categoryRefs.current; // Capture the current value of categoryRefs.current
+    const currentRefs = categoryRefs.current;
 
     categories.forEach((category) => {
       if (currentRefs[category.path]) {
@@ -121,15 +129,27 @@ export const ImageDisplay = () => {
     }
   };
 
+  const handleNavigation = (categoryPath, direction) => {
+    setCurrentIndexes((prev) => {
+      const newIndex =
+        direction === 'right'
+          ? Math.min(
+              prev[categoryPath] + 1,
+              imagesByCategory[categoryPath].length - 1
+            )
+          : Math.max(prev[categoryPath] - 1, 0);
+      return { ...prev, [categoryPath]: newIndex };
+    });
+  };
+
   return (
     <div>
-      {/* horizontal line */}
-      <div className="relative py-16 mt-10 text-6xl p-7 text-brown">
+      <div className="relative py-16 mt-24 text-6xl p-7 text-brown">
         <div
           className={cn(
             'h-[1px] absolute left-1/2 -translate-x-1/2 bg-black bg-opacity-50 top-0  w-full'
           )}></div>
-        Selected <br></br> Works
+        Selected <br /> Works
       </div>
 
       {categories.map((category) => (
@@ -138,13 +158,11 @@ export const ImageDisplay = () => {
           ref={(el) => (categoryRefs.current[category.path] = el)}
           data-category={category.path}
           className="grid overflow-hidden h-[700px] columns-2 grid-cols-[30%_70%] relative">
-          {/* horizontal line */}
           <div
             className={cn(
               'h-[1px] absolute left-1/2 -translate-x-1/2 bg-black bg-opacity-50 top-0 duration-[3000ms]',
               visibilityState[category.path] ? 'w-full' : 'w-0'
             )}></div>
-          {/* left text */}
           <div
             className={cn(
               'relative duration-700 delay-400',
@@ -154,16 +172,53 @@ export const ImageDisplay = () => {
               <p className="text-xs text-gray-500 ">PROJECT</p>
               <h3 className="text-2xl text-gray-800">{category.displayName}</h3>
             </div>
-            {/* vertical line */}
+            <div className="absolute bottom-7 left-7">
+              <div className="text-xs text-gray-500">
+                IMAGES {currentIndexes[category.path] + 1} /{' '}
+                {imagesByCategory[category.path]?.length || 0}
+              </div>
+              <div className="relative my-3 space-x-3 -left-1">
+                <button
+                  onClick={() => handleNavigation(category.path, 'left')}
+                  disabled={currentIndexes[category.path] === 0}
+                  className="px-5 py-1 text-sm rounded-full text-brown cursor-pointer border-brown border-[1px] disabled:opacity-50 group relative overflow-hidden">
+                  <div className="absolute duration-300 -translate-x-1/2 -translate-y-1/2 rounded-full size-0 group-hover:size-20 left-1/2 top-1/2 bg-brown"></div>
+                  <span className="relative z-10 duration-150 group-hover:text-white">
+                    {' '}
+                    Left{' '}
+                  </span>
+                </button>
+                <button
+                  onClick={() => handleNavigation(category.path, 'right')}
+                  disabled={
+                    currentIndexes[category.path] ===
+                    imagesByCategory[category.path]?.length - 1
+                  }
+                  className="px-5 py-1 text-sm rounded-full text-brown cursor-pointer border-brown border-[1px] disabled:opacity-50 group relative overflow-hidden">
+                  <div className="absolute duration-300 -translate-x-1/2 -translate-y-1/2 rounded-full size-0 group-hover:size-20 left-1/2 top-1/2 bg-brown"></div>
+                  <span className="relative z-10 duration-150 group-hover:text-white">
+                    {' '}
+                    Right{' '}
+                  </span>
+                </button>
+              </div>
+            </div>
             <div
               className={cn(
                 'w-[1px] bg-black bg-opacity-50 absolute top-0 right-0 duration-[3000ms]',
                 visibilityState[category.path] ? 'h-full' : 'h-0'
               )}></div>
           </div>
-          {/* right images */}
-          <div className="relative">
-            <div className="absolute top-1/2 left-6 -translate-y-1/2 flex h-[90%] space-x-6 ">
+
+          <div className="relative overflow-hidden">
+            <div
+              className="absolute top-1/2 left-6 -translate-y-1/2 flex h-[90%] space-x-6"
+              style={{
+                transform: `translateX(-${
+                  currentIndexes[category.path] * 624
+                }px)`,
+                transition: 'transform 0.5s ease'
+              }}>
               {imagesByCategory[category.path]?.map((image, index) => (
                 <div
                   key={index}
@@ -177,7 +232,7 @@ export const ImageDisplay = () => {
                   <img
                     src={image.url}
                     alt={`${category.displayName} ${index + 1}`}
-                    className="absolute top-0 left-0 object-cover w-full h-full"
+                    className="absolute left-0 object-cover w-full h-full -top-1/2"
                   />
                   {user?.email && (
                     <button
