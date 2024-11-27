@@ -51,11 +51,13 @@ export const Nav = ({ full }) => {
                     scrollToTop();
                     setNav(item.text);
                   }}
-                  className={cn(
-                    'p-3 xl:px-10 hover:bg-brown hover:bg-opacity-5 duration-150',
-                    isActive && 'bg-brown bg-opacity-10 duration-150'
-                  )}>
+                  className={cn('p-3 xl:px-10 duration-150 relative group')}>
                   {item.text}
+                  <div
+                    className={cn(
+                      'absolute bottom-2 w-0 bg-brown duration-300 bg-opacity-35 left-[30%] h-[1px] group-hover:w-[40%]',
+                      isActive && 'bg-opacity-100 w-[40%]'
+                    )}></div>
                 </Link>
               );
             })}
