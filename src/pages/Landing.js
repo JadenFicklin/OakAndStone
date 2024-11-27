@@ -1,7 +1,6 @@
 import { Carousel } from 'components/Carousel';
 import { Faqs } from 'components/Faqs';
 import { Services } from 'components/Services';
-import { Spacer } from 'components/Spacer';
 import { SingleTestimonial } from 'components/SingleTestimonial';
 import { ThreeTestimonials } from 'components/ThreeTestimonials';
 import { ImageDisplay } from 'components/ImageDisplay';
@@ -23,7 +22,6 @@ export const Landing = () => {
         <SingleTestimonial />
         <ThreeTestimonials />
         <ImageDisplay />
-        <Spacer />
       </div>
     </>
   );
