@@ -157,7 +157,7 @@ export const ImageDisplay = () => {
           key={category.path}
           ref={(el) => (categoryRefs.current[category.path] = el)}
           data-category={category.path}
-          className="grid overflow-hidden h-[700px] columns-2 grid-cols-[30%_70%] relative">
+          className="grid overflow-hidden h-[300px] md:h-[700px] columns-2 grid-cols-[30%_70%] relative">
           <div
             className={cn(
               'h-[1px] absolute left-1/2 -translate-x-1/2  z-20 bg-gray-500 top-0 duration-[3000ms]',
@@ -168,16 +168,18 @@ export const ImageDisplay = () => {
               'relative duration-700 delay-400',
               visibilityState[category.path] ? 'opacity-100' : 'opacity-0'
             )}>
-            <div className="p-7">
+            <div className="p-1 md:p-7">
               <p className="text-xs text-gray-500 ">PROJECT</p>
-              <h3 className="text-2xl text-gray-800">{category.displayName}</h3>
+              <h3 className="text-xl text-gray-800 md:text-2xl">
+                {category.displayName}
+              </h3>
             </div>
-            <div className="absolute bottom-7 left-7">
+            <div className="absolute bottom-1 left-2 md:bottom-7 md:left-7">
               <div className="text-xs text-gray-500">
                 IMAGES {currentIndexes[category.path] + 1} /{' '}
                 {imagesByCategory[category.path]?.length || 0}
               </div>
-              <div className="relative my-3 space-x-3 -left-1">
+              <div className="relative my-3 space-y-2 md:space-x-3 md:space-y-0 -left-1">
                 <button
                   onClick={() => handleNavigation(category.path, 'left')}
                   disabled={currentIndexes[category.path] === 0}
@@ -210,13 +212,14 @@ export const ImageDisplay = () => {
               )}></div>
           </div>
 
-          <div className="relative overflow-hidden">
+          {/* small screens */}
+          <div className="relative overflow-hidden md:hidden">
             <div className="absolute top-[0px] z-10 w-full bg-white h-9"></div>
             <div
               className="absolute top-1/2 left-6 -translate-y-1/2 flex h-[90%] space-x-6 "
               style={{
                 transform: `translateX(-${
-                  currentIndexes[category.path] * 624
+                  currentIndexes[category.path] * 224
                 }px)`,
                 transition: 'transform 0.5s ease'
               }}>
@@ -224,7 +227,7 @@ export const ImageDisplay = () => {
                 <div
                   key={index}
                   className={cn(
-                    'relative flex-shrink-0 w-[600px] duration-[1500ms] ease-in-out',
+                    'relative flex-shrink-0 w-[200px] md:w-[600px] duration-[1500ms] ease-in-out',
                     visibilityState[category.path] ? 'top-0' : '-top-[100%]'
                   )}
                   style={{
@@ -238,7 +241,44 @@ export const ImageDisplay = () => {
                   {user?.email && (
                     <button
                       onClick={() => removeImage(category.path, image.name)}
-                      className="absolute text-white bg-red-500 rounded-full size-8 top-2 right-2">
+                      className="absolute text-white bg-red-500 rounded-full rotat size-8 -top-[40%] right-2">
+                      ✕
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* medium or larger screens */}
+          <div className="relative hidden overflow-hidden md:flex">
+            <div className="absolute top-[0px] z-10 w-full bg-white h-9"></div>
+            <div
+              className="absolute top-1/2 left-6 -translate-y-1/2 flex h-[90%] space-x-6 "
+              style={{
+                transform: `translateX(-${
+                  currentIndexes[category.path] * 624
+                }px)`,
+                transition: 'transform 0.5s ease'
+              }}>
+              {imagesByCategory[category.path]?.map((image, index) => (
+                <div
+                  key={index}
+                  className={cn(
+                    'relative flex-shrink-0 w-[200px] md:w-[600px] duration-[1500ms] ease-in-out',
+                    visibilityState[category.path] ? 'top-0' : '-top-[100%]'
+                  )}
+                  style={{
+                    transitionDelay: `${index * 0.5}s`
+                  }}>
+                  <img
+                    src={image.url}
+                    alt={`${category.displayName} ${index + 1}`}
+                    className="absolute left-0 object-cover w-full h-full -top-1/2"
+                  />
+                  {user?.email && (
+                    <button
+                      onClick={() => removeImage(category.path, image.name)}
+                      className="absolute text-white bg-red-500 rounded-full size-8 -top-[48.5%] right-2">
                       ✕
                     </button>
                   )}
@@ -247,7 +287,7 @@ export const ImageDisplay = () => {
             </div>
           </div>
           {user?.email && (
-            <div className="flex justify-center items-center w-full h-[200px] mt-4 border-2 border-dashed border-gray-400">
+            <div className="flex justify-center items-center w-[200px] h-[30px] absolute bottom-0 left-0 border-2 border-dashed border-gray-400">
               <label className="cursor-pointer">
                 <span className="text-gray-500">+ Add New Images</span>
                 <input
