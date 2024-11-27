@@ -4,6 +4,7 @@ import {
   Route,
   useLocation
 } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import 'App.css';
 import { Landing } from 'pages/Landing';
 import { Gallery } from 'pages/Gallery';
@@ -19,10 +20,28 @@ import { Login } from 'pages/Login';
 function AppContent() {
   const location = useLocation();
   const home = location.pathname === '/';
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    // Function to update scroll position
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const isFullNav = home && scrollPosition < 100;
 
   return (
     <>
-      <Nav full={home} />
+      <Nav full={isFullNav} />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/about" element={<About />} />

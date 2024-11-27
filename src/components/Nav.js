@@ -28,12 +28,15 @@ export const Nav = ({ full }) => {
             <img
               alt="oak and stone logo"
               src={logo}
-              className={cn('h-8', full && 'my-9 h-12 xl:h-16 border-none')}
+              className={cn(
+                'h-8 transition-all duration-300',
+                full && 'my-9 h-12 xl:h-16 border-none'
+              )}
             />
           </Link>
           <div
             className={cn(
-              'relative flex  text-xs uppercase text-brown py-3',
+              'relative flex text-xs uppercase text-brown py-3 transition-all duration-300',
               full && 'p-3 my-3'
             )}>
             {navOptions.map((item, index) => {

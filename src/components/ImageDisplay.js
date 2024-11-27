@@ -151,7 +151,7 @@ export const ImageDisplay = () => {
           )}></div>
         Selected <br /> Works
       </div>
-      <div className="hidden xl:block sticky z-30 w-full  pl-7 -mt-6  text-white bg-brown top-[136px]">
+      <div className="hidden xl:block sticky z-30 w-full  pl-7 -mt-6  text-white bg-brown top-[64px]">
         Selected Works
       </div>
 
@@ -160,7 +160,7 @@ export const ImageDisplay = () => {
           key={category.path}
           ref={(el) => (categoryRefs.current[category.path] = el)}
           data-category={category.path}
-          className="grid overflow-hidden h-[300px] md:h-[700px] columns-2 grid-cols-[30%_70%] relative">
+          className="grid overflow-hidden h-[300px] md:h-[600px] columns-2 grid-cols-[30%_70%] relative">
           <div
             className={cn(
               'h-[1px] absolute left-1/2 -translate-x-1/2  z-20 bg-gray-500 top-0 duration-[3000ms]',
