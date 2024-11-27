@@ -74,7 +74,7 @@ export const Services = () => {
 
         <div className="absolute w-full h-full p-5 text-white -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 md:px-32 top-1/2 left-1/2 shadow-custom">
           <div className="flex items-center justify-between">
-            <h2 className="py-10 text-4xl text-white border-b border-white border-opacity-25 lg:text-6xl">
+            <h2 className="w-full py-10 text-4xl text-white border-b border-white border-opacity-25 lg:text-6xl">
               Our services
             </h2>
             {user.email && (
