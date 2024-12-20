@@ -38,45 +38,59 @@ export const ImageModal = ({ images, currentIndex, onClose }) => {
     };
   }, [nextImage, prevImage, handleClose]);
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
-      {/* Background click to close */}
-      <div onClick={handleClose} className="absolute inset-0 z-40"></div>
+  // Handle clicks outside the modal content
+  const handleOutsideClick = (e) => {
+    if (
+      e.target.closest('.modal-content') === null &&
+      e.target.closest('.arrow-button') === null
+    ) {
+      handleClose();
+    }
+  };
 
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80"
+      onClick={handleOutsideClick} // Handle clicks outside the modal content
+    >
       {/* Modal content container */}
       <div
-        className="relative z-50 w-11/12 max-w-4xl mx-auto "
+        className="relative z-50 w-11/12 max-w-4xl mx-auto modal-content"
         onClick={(e) => e.stopPropagation()} // Prevent clicks inside the modal from closing it
       >
-        {/* Close button */}
-        <button
-          onClick={handleClose}
-          className="absolute top-0 right-0 p-2 text-white scale-50 bg-black rounded-full lg:scale-100 lg:top-4 lg:right-4">
-          <IoMdClose size={24} />
-        </button>
+        {/* Modal image container with background */}
+        <div
+          className="relative w-full bg-center bg-cover"
+          style={{
+            backgroundImage: `url(${images[index].url})`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            minHeight: '90vh',
+            height: 'auto',
+            paddingTop: '56.25%'
+          }}></div>
+        {/* Close button relative to the image */}
 
         {/* Left arrow */}
         <button
           onClick={prevImage}
-          className="absolute left-0 z-50 p-2 text-white scale-50 -translate-y-1/2 bg-white rounded-full lg:scale-100 lg:-left-16 top-1/2 bg-opacity-60">
+          className="absolute left-0 z-50 p-2 text-white scale-50 -translate-y-1/2 bg-white rounded-full lg:scale-100 lg:-left-16 top-1/2 bg-opacity-60 arrow-button">
           <IoIosArrowBack size={30} />
         </button>
-
-        {/* Image */}
-        <img
-          src={images[index].url}
-          alt={index}
-          className="object-contain w-full max-h-[90vh] mx-auto transition-transform duration-300"
-          style={{ userSelect: 'none' }} // Prevent image from being highlighted
-        />
 
         {/* Right arrow */}
         <button
           onClick={nextImage}
-          className="absolute right-0 z-50 p-2 text-white scale-50 -translate-y-1/2 bg-white rounded-full lg:scale-100 lg:-right-16 top-1/2 bg-opacity-60">
+          className="absolute right-0 z-50 p-2 text-white scale-50 -translate-y-1/2 bg-white rounded-full lg:scale-100 lg:-right-16 top-1/2 bg-opacity-60 arrow-button">
           <IoIosArrowForward size={30} />
         </button>
       </div>
+      <button
+        onClick={handleClose}
+        className="absolute right-0 z-50 p-2 text-white scale-50 bg-white rounded-full top-2 lg:right-2 lg:scale-100 bg-opacity-60 arrow-button">
+        <IoMdClose size={20} />
+      </button>
     </div>
   );
 };
